@@ -22,6 +22,8 @@ float angle = 0.0;
 float angle2 = 0.0;
 bool a=true, b=true;
 
+const uint16_t WIN_WIDTH= 800 , WIN_HEIGHT = 500;
+
 static void resize(int width, int height)
 {
     const float ar = (float) width / (float) height;
@@ -50,25 +52,7 @@ static void display(void)
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
-     glPushMatrix();
-        //Buste
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(2.0);
-        glPopMatrix();
-        //Tete
-        glTranslatef(0, 1.5, 0);
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(1.0);
-        glPopMatrix();
-        //Deuxième partie buste
-        glTranslatef(0,-3.5, 0);
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(2.0);
-        glPopMatrix();
-    glPopMatrix();
+    body();
 
     leftArm();
     glPushMatrix();
@@ -191,7 +175,7 @@ const GLfloat high_shininess[] = { 100.0f };
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
-    glutInitWindowSize(800,480);
+    glutInitWindowSize(WIN_WIDTH,WIN_HEIGHT);
     glutInitWindowPosition(10,10);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 

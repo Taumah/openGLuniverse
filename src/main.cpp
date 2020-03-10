@@ -50,32 +50,25 @@ static void display(void)
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
-    // glPushMatrix();
-
-    //     glTranslatef(4, 0, 0);
-    //     glTranslatef(-1, 0, 0);
-    //     glutWireSphere(0.5, 10 , 10);
-    //     glRotatef(angle, 0, 0, 1);
-    //     glTranslatef(1, 0, 0);
-    //     //Avant Bras
-    //     glPushMatrix();
-    //         glScalef(2,1,1);
-    //         glutWireCube(1.0);
-    //     glPopMatrix();
-
-    //     glTranslatef(1, 0, 0);
-    //     glutWireSphere(0.5,10,10);
-    //     glRotatef(angle2, 0, 0, 1);
-    //     glTranslatef(1, 0, 0);
-    //     //Bras
-    //     glPushMatrix();
-    //         glScalef(2,1,1);
-    //         glutWireCube(1.0);
-    //     glPopMatrix();
-
-
-
-    // glPopMatrix();
+     glPushMatrix();
+        //Buste
+        glPushMatrix();
+            glScalef(2,1,1);
+            glutWireCube(2.0);
+        glPopMatrix();
+        //Tete
+        glTranslatef(0, 1.5, 0);
+        glPushMatrix();
+            glScalef(2,1,1);
+            glutWireCube(1.0);
+        glPopMatrix();
+        //Deuxième partie buste
+        glTranslatef(0,-3.5, 0);
+        glPushMatrix();
+            glScalef(2,1,1);
+            glutWireCube(2.0);
+        glPopMatrix();
+    glPopMatrix();
 
     leftArm();
     glPushMatrix();
@@ -101,25 +94,7 @@ static void display(void)
         glPopMatrix();
     glPopMatrix();
 
-    glPushMatrix();
-        //Buste
-        glTranslatef(1,0,0);
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(2.0);
-        glPopMatrix();
-        glTranslatef(0, 1.5, 0);
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(1.0);
-        glPopMatrix();
-
-        glTranslatef(0,-3.5, 0);
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(2.0);
-        glPopMatrix();
-    glPopMatrix();
+   
 
     glutSwapBuffers();
     glFlush();

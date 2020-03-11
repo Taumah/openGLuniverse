@@ -20,6 +20,9 @@ static int slices = 16;
 static int stacks = 16;
 float angle = 0.0;
 float angle2 = 0.0;
+float headAngle= 0.0;
+float kneeAngle=0.0;
+float thigh = 0.0;
 bool a=true, b=true;
 
 const uint16_t WIN_WIDTH= 800 , WIN_HEIGHT = 500;
@@ -47,17 +50,23 @@ static void display(void)
 
     glLoadIdentity();
     gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    glTranslatef(0.0f, 0.0f, -5.0f);                      // déplacement caméra
+    glTranslatef(0.0f, 0.0f, -10.0f);                      // déplacement caméra
     glColor3f(1.0f, 1.0f, 1.0f);
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
     body();
-
-    leftArm();
-
-    rightArm();
-
+    glPushMatrix();
+        head(headAngle);
+    glPopMatrix();
+    glPushMatrix();
+        leftArm();
+        rightArm();
+    glPopMatrix();
+    glPushMatrix();
+        rightLeg(kneeAngle, thigh);
+        leftLeg(kneeAngle, thigh);
+    glPopMatrix();
     glutSwapBuffers();
     glFlush();
 }
@@ -88,14 +97,8 @@ if (value == 0){
         b = false;
     }
 }
-
-
-    printf("%d", a);
-    printf("%d", b);
     glutPostRedisplay();
     glutTimerFunc(10,update, 0);
-
-
 }
 
 
@@ -120,13 +123,31 @@ static void key(unsigned char key, int x, int y)
                 stacks--;
             }
             break;
-        case 'h':
+        case 'a':
             angle<=90?angle+=5:angle+=0;
             angle2<=90?angle2+=5:angle2+=0;
             break;
-        case 'j':
+        case 'A':
             angle>=-90?angle-=5:angle+=0;
             angle2>=0?angle2-=5:angle2+=0;
+            break;
+        case 'h':
+            headAngle>=-90?headAngle-=5:headAngle+=0;
+            break;
+        case 'H':
+            headAngle<=90?headAngle+=5:headAngle-=0;
+            break;
+        case 'k':
+            kneeAngle<=140?kneeAngle+=5:kneeAngle+=0;
+            break;
+        case 'K':
+            kneeAngle>=0?kneeAngle-=5:kneeAngle+=0;
+            break;
+        case 't':
+            thigh>=-100?thigh-=5:thigh+=0;
+            break;
+        case 'T':
+            thigh<=45?thigh+=5:thigh+=0;
             break;
     }
 

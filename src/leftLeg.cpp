@@ -4,13 +4,12 @@
 #include <stdio.h>
 
 
-void leftArm(){
-   
-    glPushMatrix();
+void leftLeg(){
+     glPushMatrix();
 
-        glTranslatef(2, 0, 0);
+        glTranslatef(-1, -3, 0);
         glutWireSphere(0.5, 10 , 10);
-        glRotatef(10, 0, 0, 1);
+        glRotatef(-90, 0, 0, 1);
         glTranslatef(1, 0, 0);
         //Avant Bras
         glPushMatrix();

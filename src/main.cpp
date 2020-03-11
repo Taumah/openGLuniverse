@@ -58,6 +58,8 @@ static void display(void)
 
     rightArm();
 
+    leftLeg();
+
     glutSwapBuffers();
     glFlush();
 }

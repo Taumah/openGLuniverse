@@ -26,6 +26,7 @@ float thigh = 0.0;
 float kneeAngle2=0.0;
 float thigh2 = 0.0;
 float cameraAngle = 0.0;
+float movAngle =0.0;
 bool a=true, b=true, c=true, d=true, leftLegW = true, rightLegW = false;
 
 const uint16_t WIN_WIDTH= 800 , WIN_HEIGHT = 500;
@@ -59,17 +60,21 @@ static void display(void)
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
-    body();
     glPushMatrix();
-        head(headAngle);
-    glPopMatrix();
-    glPushMatrix();
-        leftArm(armAngle);
-        rightArm(armAngle);
-    glPopMatrix();
-    glPushMatrix();
-        rightLeg(kneeAngle, thigh);
-        leftLeg(kneeAngle2, thigh2);
+        glRotatef(movAngle, 0, 1, 0);
+        glTranslatef(5, 0, 0);
+        body();
+        glPushMatrix();
+            head(headAngle);
+        glPopMatrix();
+        glPushMatrix();
+            leftArm(armAngle);
+            rightArm(armAngle);
+        glPopMatrix();
+        glPushMatrix();
+            rightLeg(kneeAngle, thigh);
+            leftLeg(kneeAngle2, thigh2);
+        glPopMatrix();
     glPopMatrix();
     glutSwapBuffers();
     glFlush();
@@ -111,6 +116,7 @@ void update(int value){
         }
     }
     armAngle +=40;
+    movAngle +=-2;
     //cameraAngle+=5;
     glutPostRedisplay();
     glutTimerFunc(10,update, 0);

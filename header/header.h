@@ -1,8 +1,6 @@
-#define LEFT -1
-#define RIGHT 1 // factor when using fonction (arm(LEFT) ; arm(RIGHT)) (both same function with opposite values)
-
-void leftArm();
-void rightArm();
+void leftArm(float armAngle);
+void rightArm(float armAngle);
 void body();
-void leftLeg();
-
+void leftLeg(float kneeAngle, float thigh);
+void rightLeg(float kneeAngle, float thigh);
+void head(float headAngle);

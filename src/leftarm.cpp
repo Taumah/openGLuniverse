@@ -5,11 +5,11 @@
 
 extern float angle , angle2;
 
-void rightArm(){
+void rightArm(float armAngle){
     glPushMatrix();
         glTranslatef(-2, 0, 0);
         glutWireSphere(0.5, 10 , 10);
-        glRotatef(angle, 0, 0, 1);
+        glRotatef(armAngle, 1, 0, 1);
         glTranslatef(-1, 0, 0);
         //Avant Bras
         glPushMatrix();
@@ -19,7 +19,7 @@ void rightArm(){
 
         glTranslatef(-1, 0, 0);
         glutWireSphere(0.5,10,10);
-        glRotatef(angle2, 0, 0, 1);
+        glRotatef(10, 0, 0, 1);
         glTranslatef(-1, 0, 0);
         //Bras
         glPushMatrix();

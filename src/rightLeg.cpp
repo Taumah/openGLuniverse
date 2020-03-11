@@ -26,7 +26,5 @@ void rightLeg(float kneeAngle, float thigh){
             glScalef(1.5, 2, 1);
             glutWireCube(1.0);
         glPopMatrix();
-
     glPopMatrix();
-
 }

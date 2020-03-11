@@ -3,31 +3,28 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-void leftLeg(){
-     glPushMatrix();
+void leftLeg(float kneeAngle, float thigh){
+    
+    glPushMatrix();
 
         glTranslatef(-1, -3, 0);
-        glutWireSphere(0.5, 10 , 10);
-        glRotatef(-90, 0, 0, 1);
-        glTranslatef(1, 0, 0);
-        //Avant Bras
+        glutWireSphere(0.5, 10, 10);
+        glRotatef(thigh, 1, 0, 0);
+        glTranslatef(0, -1, 0);
+        //Cuisseau
         glPushMatrix();
-            glScalef(2,1,1);
+            glScalef(1.5, 2, 1);
             glutWireCube(1.0);
         glPopMatrix();
 
-        glTranslatef(1, 0, 0);
-        glutWireSphere(0.5,10,10);
-        glRotatef(10, 0, 0, 1);
-        glTranslatef(1, 0, 0);
-        //Bras
+        glTranslatef(0, -1, 0);
+        glutWireSphere(0.5, 10, 10);
+        glRotatef(kneeAngle, 1, 0, 0);
+        glTranslatef(0, -1, 0);
+        //Tibia
         glPushMatrix();
-            glScalef(2,1,1);
+            glScalef(1.5, 2, 1);
             glutWireCube(1.0);
         glPopMatrix();
-
-
-
     glPopMatrix();
 }

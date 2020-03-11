@@ -1,10 +1,16 @@
 /*
-**Authors : Tresgots Thomas & Thiel Antoine
-** first release : 10/03/20 (fr notation)
-** last updated : 11/03/20
-**
-**
-*/
+ * GLUT Shapes Demo
+ *
+ * Written by Nigel Stewart November 2003
+ *
+ * This program is test harness for the sphere, cone
+ * and torus shapes in GLUT.
+ *
+ * Spinning wireframe and smooth shaded shapes are
+ * displayed until the ESC or q key is pressed.  The
+ * number of geometry stacks and slices can be adjusted
+ * using the + and - keys.
+ */
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -12,9 +18,16 @@
 
 static int slices = 16;
 static int stacks = 16;
-float angle = 0.0;
-float angle2 = 0.0;
-bool a=true, b=true;
+float armAngle = 0.0;
+float armAngle2 = 0.0;
+float headAngle= 0.0;
+float kneeAngle=0.0;
+float thigh = 0.0;
+float kneeAngle2=0.0;
+float thigh2 = 0.0;
+float cameraAngle = 0.0;
+float movAngle =0.0;
+bool a=true, b=true, c=true, d=true, leftLegW = true, rightLegW = false;
 
 const uint16_t WIN_WIDTH= 800 , WIN_HEIGHT = 500;
 
@@ -41,59 +54,74 @@ static void display(void)
 
     glLoadIdentity();
     gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    glTranslatef(0.0f, 0.0f, -5.0f);                      // déplacement caméra
+    glTranslatef(0.0f, 0.0f, -10.0f);
+    glRotatef(0, 0,1,0);                      // déplacement caméra
     glColor3f(1.0f, 1.0f, 1.0f);
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
-    body();
-
-    leftArm();
-
-    rightArm();
-
-    leftLeg();
-
+    glPushMatrix();
+        glRotatef(movAngle, 0, 1, 0);
+        glTranslatef(5, 0, 0);
+        body();
+        glPushMatrix();
+            head(headAngle);
+        glPopMatrix();
+        glPushMatrix();
+            leftArm(armAngle);
+            rightArm(armAngle);
+        glPopMatrix();
+        glPushMatrix();
+            rightLeg(kneeAngle, thigh);
+            leftLeg(kneeAngle2, thigh2);
+        glPopMatrix();
+    glPopMatrix();
     glutSwapBuffers();
     glFlush();
 }
 
 /* Fonction de mise à jour: mouvements des objets*/
 void update(int value){
-
-if (value == 0){
-    if (a){
-        angle+=5;
-        if (angle >=85){
-            a = false;
+    
+    if (a==false) {
+         headAngle>=-90?headAngle-=5:a=true;
+    }
+    if (a==true){
+        headAngle<=90?headAngle+=5:a=false;
+    }
+    if (leftLegW == true){
+        if (thigh >=-20){
+            thigh-=5;
+            thigh2<0?thigh2+=5:thigh2+=0;
+        }
+        if (kneeAngle<=20){
+            kneeAngle+=5;
+            kneeAngle2>0?kneeAngle2-=5:kneeAngle2+=0;
+        }else{
+            rightLegW=true;
+            leftLegW=false;
         }
     }
-    if (b){
-        angle2+=5;
-        if (angle2 >=85){
-            b = false;
+    if (rightLegW == true){
+        if (thigh2>=-20){
+            thigh2-=5;
+            thigh<0?thigh+=5:thigh+=0;
+        }
+        if (kneeAngle2 <= 20){
+            kneeAngle2 +=5;
+            kneeAngle>0?kneeAngle-=5:kneeAngle2+=0;
+        }else{
+            leftLegW = true;
+            rightLegW = false;
         }
     }
-}else{
-    angle -=5;
-    if (angle <=90){
-        a = true;
-    }
-    angle2 -=5;
-    if (angle2<=0){
-        b = false;
-    }
-}
-
-
-    printf("%d", a);
-    printf("%d", b);
+    armAngle +=40;
+    movAngle +=-2;
+    //cameraAngle+=5;
     glutPostRedisplay();
     glutTimerFunc(10,update, 0);
 
-
 }
-
 
 static void key(unsigned char key, int x, int y)
 {
@@ -117,12 +145,22 @@ static void key(unsigned char key, int x, int y)
             }
             break;
         case 'h':
-            angle<=90?angle+=5:angle+=0;
-            angle2<=90?angle2+=5:angle2+=0;
+            headAngle>=-90?headAngle-=5:headAngle+=0;
             break;
-        case 'j':
-            angle>=-90?angle-=5:angle+=0;
-            angle2>=0?angle2-=5:angle2+=0;
+        case 'H':
+            headAngle<=90?headAngle+=5:headAngle-=0;
+            break;
+        case 'k':
+            kneeAngle<=140?kneeAngle+=5:kneeAngle+=0;
+            break;
+        case 'K':
+            kneeAngle>=0?kneeAngle-=5:kneeAngle+=0;
+            break;
+        case 't':
+            thigh>=-100?thigh-=5:thigh+=0;
+            break;
+        case 'T':
+            thigh<=45?thigh+=5:thigh+=0;
             break;
     }
 
@@ -157,12 +195,7 @@ int main(int argc, char *argv[])
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
-   /* if (a || b){
-    glutTimerFunc (20,update, 0);
-    }
-    if (a == false && b == false){
-        glutTimerFunc(20, update, 1);
-    } */
+    glutTimerFunc(20, update, 1);
     glutKeyboardFunc(key);
     glutIdleFunc(idle);
 

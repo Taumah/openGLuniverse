@@ -89,34 +89,34 @@ void update(int value){
     if (a==true){
         headAngle<=90?headAngle+=5:a=false;
     }
-    if (leftLegW == true){
-        if (thigh >=-20){
-            thigh-=5;
-            thigh2<0?thigh2+=5:thigh2+=0;
-        }
-        if (kneeAngle<=20){
-            kneeAngle+=5;
-            kneeAngle2>0?kneeAngle2-=5:kneeAngle2+=0;
-        }else{
-            rightLegW=true;
-            leftLegW=false;
-        }
-    }
-    if (rightLegW == true){
-        if (thigh2>=-20){
-            thigh2-=5;
-            thigh<0?thigh+=5:thigh+=0;
-        }
-        if (kneeAngle2 <= 20){
-            kneeAngle2 +=5;
-            kneeAngle>0?kneeAngle-=5:kneeAngle2+=0;
-        }else{
-            leftLegW = true;
-            rightLegW = false;
-        }
-    }
-    armAngle +=40;
-    movAngle +=-2;
+    // if (leftLegW == true){
+    //     if (thigh >=-20){
+    //         thigh-=5;
+    //         thigh2<0?thigh2+=5:thigh2+=0;
+    //     }
+    //     if (kneeAngle<=20){
+    //         kneeAngle+=5;
+    //         kneeAngle2>0?kneeAngle2-=5:kneeAngle2+=0;
+    //     }else{
+    //         rightLegW=true;
+    //         leftLegW=false;
+    //     }
+    // }
+    // if (rightLegW == true){
+    //     if (thigh2>=-20){
+    //         thigh2-=5;
+    //         thigh<0?thigh+=5:thigh+=0;
+    //     }
+    //     if (kneeAngle2 <= 20){
+    //         kneeAngle2 +=5;
+    //         kneeAngle>0?kneeAngle-=5:kneeAngle2+=0;
+    //     }else{
+    //         leftLegW = true;
+    //         rightLegW = false;
+    //     }
+    // }
+    // armAngle +=40;
+    // movAngle +=-2;
     //cameraAngle+=5;
     glutPostRedisplay();
     glutTimerFunc(10,update, 0);

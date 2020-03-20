@@ -195,7 +195,7 @@ int main(int argc, char *argv[])
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
-    glutTimerFunc(20, update, 1);
+    //glutTimerFunc(20, update, 1);
     glutKeyboardFunc(key);
     glutIdleFunc(idle);
 

@@ -15,9 +15,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../header/header.h"
+#include <math.h>
 
-static int slices = 16;
-static int stacks = 16;
+float angle = 0.0;
+
+float camera_pos[] = {0.0 , 0.0 , 5.0 };
+float R = 5, alpha = 0 , beta = 0; 
+
 float armAngle = 0.0;
 float armAngle2 = 0.0;
 float headAngle= 0.0;
@@ -53,8 +57,13 @@ static void display(void)
 
 
     glLoadIdentity();
-    gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    glTranslatef(0.0f, 0.0f, -10.0f);
+
+    camera_pos[0] = R * cos(beta) * sin(alpha);
+	camera_pos[1] = R * sin(beta);
+	camera_pos[2] = R * cos(beta) * cos(alpha);
+
+	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    glTranslatef(0.0f, 0.0f, -5);
     glRotatef(0, 0,1,0);                      // déplacement caméra
     glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -62,7 +71,7 @@ static void display(void)
 
     glPushMatrix();
         glRotatef(movAngle, 0, 1, 0);
-        glTranslatef(5, 0, 0);
+        glTranslatef(2, 0, 0);
         body();
         glPushMatrix();
             head(headAngle);
@@ -128,21 +137,8 @@ static void key(unsigned char key, int x, int y)
     switch (key)
     {
         case 27 :
-        case 'q':
+        case '$':
             exit(0);
-            break;
-
-        case '+':
-            slices++;
-            stacks++;
-            break;
-
-        case '-':
-            if (slices>3 && stacks>3)
-            {
-                slices--;
-                stacks--;
-            }
             break;
         case 'h':
             headAngle>=-90?headAngle-=5:headAngle+=0;
@@ -162,6 +158,26 @@ static void key(unsigned char key, int x, int y)
         case 'T':
             thigh<=45?thigh+=5:thigh+=0;
             break;
+        //MOVING CAMERA    
+        case 'z':
+            beta += 0.05;
+            break;
+        case 's':		
+            beta -= 0.05;
+            break;
+        case 'q':
+            alpha += 0.05;
+            break;
+        case 'd':
+            alpha -= 0.05;
+            break;
+        //Zoom
+        case 'P':
+            R += 0.1;
+            break;
+        case 'M':
+            R -= 0.1;
+            break;    
     }
 
     glutPostRedisplay();

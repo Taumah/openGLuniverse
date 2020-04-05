@@ -19,7 +19,7 @@
 
 float angle = 0.0;
 
-float camera_pos[] = {0.0 , 0.0 , 5.0 };
+float camera_pos[] = {0.0 , 0.0 , -15.0 };
 float R = 5, alpha = 0 , beta = 0; 
 
 float armAngle = 0.0;
@@ -63,15 +63,16 @@ static void display(void)
 	camera_pos[2] = R * cos(beta) * cos(alpha);
 
 	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    glTranslatef(0.0f, 7.0f, -15.0f);
+    // glTranslatef(0.0f, 0.0f, -15.0f);
     glRotatef(0, 0,1,0);                      // déplacement caméra
     glColor3f(1.0f, 1.0f, 1.0f);
+    
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
+    // glRotatef(0, 0,1,0);                      // déplacement caméra
+    
     glPushMatrix();
-        glRotatef(movAngle, 0, 1, 0);
-        glTranslatef(2, 0, 0);
         body();
         glPushMatrix();
             head(headAngle);
@@ -163,11 +164,11 @@ static void key(unsigned char key, int x, int y)
             thigh<=45?thigh+=5:thigh+=0;
             break;
         //MOVING CAMERA    
-        case 'z':
-            beta += 0.05;
-            break;
-        case 's':		
+        case 's':
             beta -= 0.05;
+            break;
+        case 'z':		
+            beta += 0.05;
             break;
         case 'q':
             alpha += 0.05;
@@ -176,11 +177,11 @@ static void key(unsigned char key, int x, int y)
             alpha -= 0.05;
             break;
         //Zoom
-        case 'P':
-            R += 0.1;
+        case 'I': //in
+            R -= 0.2;
             break;
-        case 'M':
-            R -= 0.1;
+        case 'O': //out
+            R += 0.2;
             break;    
     }
 

@@ -27,14 +27,23 @@ void leftLeg(float kneeAngle, float thigh){
             gluDeleteQuadric(genoux);
         glPopMatrix();
         
-        glTranslatef(-.2, 0, 0);
         glPushMatrix();
-            glRotatef(90, 0, 1, 0);
+            glRotatef(-90, 0, 1, 0);
             GLUquadricObj *leftdisk;
             leftdisk = gluNewQuadric();
             gluQuadricNormals(leftdisk, GLU_SMOOTH);
             gluDisk(leftdisk, 0, .5, 1024, 1024);
             gluDeleteQuadric(leftdisk);
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(1.6, 0, 0);
+            glRotatef(90, 0, 1, 0);
+            GLUquadricObj *rightdisk;
+            rightdisk = gluNewQuadric();
+            gluQuadricNormals(rightdisk, GLU_SMOOTH);
+            gluDisk(rightdisk, 0, .5, 1024, 1024);
+            gluDeleteQuadric(rightdisk);
         glPopMatrix();
 
         glTranslatef(0.8, -.3, 0);

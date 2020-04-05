@@ -20,7 +20,7 @@
 float angle = 0.0;
 
 float camera_pos[] = {0.0 , 0.0 , -15.0 };
-float R = 5, alpha = 0 , beta = 0; 
+float R = 15, alpha = 0 , beta = 0; 
 
 float armAngle = 0.0;
 float armAngle2 = 0.0;

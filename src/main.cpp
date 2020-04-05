@@ -62,7 +62,7 @@ static void display(void)
 	camera_pos[1] = R * sin(beta);
 	camera_pos[2] = R * cos(beta) * cos(alpha);
 
-	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0, 0.0, 0.0, 0.0, 1.0, 0.0);
     glTranslatef(0.0f, 0.0f, -10.0f);
     glRotatef(0, 0,1,0);                      // déplacement caméra
     glColor3f(1.0f, 1.0f, 1.0f);
@@ -70,7 +70,7 @@ static void display(void)
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
     glPushMatrix();
-        glRotatef(movAngle, 0, 1, 0);
+       /*  glRotatef(0, 0, 1, 0);
         glTranslatef(2, 0, 0);
         body();
         glPushMatrix();
@@ -83,8 +83,12 @@ static void display(void)
         glPushMatrix();
             rightLeg(kneeAngle, thigh);
             leftLeg(kneeAngle2, thigh2);
-        glPopMatrix();
-    glPopMatrix();
+        glPopMatrix(); */
+
+        hand(movAngle);
+
+    glPopMatrix(); 
+
     glutSwapBuffers();
     glFlush();
 }
@@ -126,7 +130,7 @@ void update(int value){
     }
 
     armAngle +=40;
-    movAngle +=-2;
+    movAngle -=2;
 
     glutPostRedisplay();
     glutTimerFunc(10,update, 0);
@@ -160,10 +164,10 @@ static void key(unsigned char key, int x, int y)
             thigh<=45?thigh+=5:thigh+=0;
             break;
         //MOVING CAMERA    
-        case 'z':
+        case 's':
             beta += 0.05;
             break;
-        case 's':		
+        case 'z':		
             beta -= 0.05;
             break;
         case 'q':

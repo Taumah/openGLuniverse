@@ -63,7 +63,7 @@ static void display(void)
 	camera_pos[2] = R * cos(beta) * cos(alpha);
 
 	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    glTranslatef(0.0f, 0.0f, -5);
+    glTranslatef(0.0f, 7.0f, -15.0f);
     glRotatef(0, 0,1,0);                      // déplacement caméra
     glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -83,6 +83,10 @@ static void display(void)
         glPushMatrix();
             rightLeg(kneeAngle, thigh);
             leftLeg(kneeAngle2, thigh2);
+        glPopMatrix();
+        glPushMatrix();
+            leftFoot();
+            rightFoot();
         glPopMatrix();
     glPopMatrix();
     glutSwapBuffers();

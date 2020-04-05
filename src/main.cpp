@@ -172,11 +172,11 @@ static void key(unsigned char key, int x, int y)
             alpha -= 0.05;
             break;
         //Zoom
-        case 'P':
-            R += 0.1;
+        case 'I': //in
+            R -= 0.2;
             break;
-        case 'M':
-            R -= 0.1;
+        case 'O': //out
+            R += 0.2;
             break;    
     }
 

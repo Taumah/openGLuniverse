@@ -9,24 +9,21 @@
 
 
 
-extern float angle , angle2;
+// extern float movAngle;
 
 void hand(float armAngle){
 
-
-
-    /*--------- Global ---------------*/		//A declarer en global ou tout mettre dans la meme fonction
-GLUquadricObj *pObj;		//definition du pointeur d'objet
-/*--------- INIT ---------------*/		//En phase d'initialisation
-pObj = gluNewQuadric();		//creation d'un objet(Retourne 0 si No Memory)
-
-gluDeleteQuadric (pObj);		//detruit l'objet
-
-
-
-
+    
 
     glPushMatrix();
-        gluCylinder(pObj, 20, 20, 20, 20, 20);
-    glPopMatrix();
+            glRotatef(-90, 1, 1, 2);
+            GLUquadricObj *very_bottom_head;
+            very_bottom_head = gluNewQuadric();
+            gluQuadricNormals(very_bottom_head, GLU_SMOOTH);
+            glColor3f(0.8, 0.8 , 0.7);
+            gluCylinder(very_bottom_head, 0.50, 0.50, 1, 1024, 1024);
+            gluDeleteQuadric(very_bottom_head);
+        glPopMatrix();
+
+    
 }

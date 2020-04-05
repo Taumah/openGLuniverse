@@ -70,7 +70,7 @@ static void display(void)
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
     glPushMatrix();
-        glRotatef(0, 0, 1, 0);
+       /*  glRotatef(0, 0, 1, 0);
         glTranslatef(2, 0, 0);
         body();
         glPushMatrix();
@@ -83,8 +83,12 @@ static void display(void)
         glPushMatrix();
             rightLeg(kneeAngle, thigh);
             leftLeg(kneeAngle2, thigh2);
-        glPopMatrix();
-    glPopMatrix();
+        glPopMatrix(); */
+
+        hand(movAngle);
+
+    glPopMatrix(); 
+
     glutSwapBuffers();
     glFlush();
 }

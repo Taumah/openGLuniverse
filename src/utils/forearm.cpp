@@ -39,7 +39,26 @@ void forearm(int side){
         glRotated( QUARTERTURN * side , 0 , 1 , 0 );
         gluQuadricNormals(pObj, GLU_SMOOTH);
         gluCylinder(pObj, forearmBase , forearmTop , forearmLength ,MIN_SLICES, MIN_STACKS);		
-        gluDeleteQuadric(pObj);	
+        gluDeleteQuadric(pObj);
+        	
+
+        glPushMatrix();
+            glTranslatef(0. , 0. , forearmLength);
+            if( (pObj = gluNewQuadric() ) == 0 ){
+                printf("No memory when creating forearm end Disk");
+                exit(1);
+            }
+            gluQuadricNormals(pObj, GLU_SMOOTH);
+            
+            
+            gluDisk(pObj, 0.0 , forearmTop, MIN_SLICES , MIN_STACKS);
+            glRotatef(180. , 1. , 0. , 0.);                                    //DOUBLE SIDED DISK , I'm not THAT dumb :)
+            gluDisk(pObj , 0.0 , forearmTop  , MIN_SLICES , MIN_STACKS );
+
+
+            gluDeleteQuadric(pObj);	
+        glPopMatrix();
+
     
         for(int i = 0 ; i < 6 ; i++){
             float rotation = 60;

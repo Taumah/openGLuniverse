@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.h"
-#include "../../header/header.h"
-#include "../../header/commons/all.h"
+#include "../../header/utils/all.hpp"
+#include "../../header/header.hpp"
+#include "../../header/commons/all.hpp"
 
 
 extern GLUquadricObj *pObj;

@@ -1,9 +1,9 @@
-#include "../header/header.h"
+#include "../header/header.hpp"
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../header/utils/all.h"
+#include "../header/utils/all.hpp"
 
 void rightArm(float armAngle){
    

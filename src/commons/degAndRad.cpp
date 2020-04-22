@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.h"
-#include "../../header/header.h"
+#include "../../header/utils/all.hpp"
+#include "../../header/header.hpp"
 
 
 double degToRad(double value){

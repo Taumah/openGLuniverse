@@ -1,7 +1,7 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../header/header.h"
+#include "../header/header.hpp"
 #include <math.h>
 
 float angle = 0.0;

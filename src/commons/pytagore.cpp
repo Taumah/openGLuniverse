@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.h"
-#include "../../header/header.h"
+#include "../../header/utils/all.hpp"
+#include "../../header/header.hpp"
 
 
 float pytagore(float a , float b , float c){

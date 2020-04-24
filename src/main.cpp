@@ -61,7 +61,6 @@ static void display(void)
     // glRotatef(0, 0,1,0);                      // déplacement caméra
     
     glPushMatrix();
-       body();
        glPushMatrix();
            head(headAngle);
        glPopMatrix();
@@ -70,9 +69,15 @@ static void display(void)
            rightArm(armAngle);
        glPopMatrix();
        glPushMatrix();
-           rightLeg(kneeAngle, thigh);
-           leftLeg(kneeAngle2, thigh2);
-       glPopMatrix();
+        glTranslatef(0, -1, 0);
+        glPushMatrix();
+                lowerBody();
+        glPopMatrix();
+        glPushMatrix();
+            rightLeg(kneeAngle, thigh);
+            leftLeg(kneeAngle2, thigh2);
+        glPopMatrix();
+    glPopMatrix();
        glPushMatrix();
            leftFoot();
            rightFoot();

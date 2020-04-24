@@ -1,30 +1,24 @@
-#include "../header/header.h"
+#include "../header/header.hpp"
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-extern float angle , angle2;
+#include "../header/utils/all.hpp"
 
-void rightArm(float armAngle){
+void leftArm(float armAngle){
+
     glPushMatrix();
         glTranslatef(-2, 0, 0);
         glutWireSphere(0.5, 10 , 10);
-        glRotatef(armAngle, 1, 0, 1);
-        glTranslatef(-1, 0, 0);
-        //Avant Bras
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(1.0);
-        glPopMatrix();
+        glRotatef(60, 1, 0, 1);
+        
+        arm(LEFT);
 
-        glTranslatef(-1, 0, 0);
-        glutWireSphere(0.5,10,10);
+        
+        glTranslatef(-2, 0, 0);
+        elbow();
         glRotatef(10, 0, 0, 1);
-        glTranslatef(-1, 0, 0);
-        //Bras
-        glPushMatrix();
-            glScalef(2,1,1);
-            glutWireCube(1.0);
-        glPopMatrix();
+
+        forearm(LEFT);
     glPopMatrix();
 }

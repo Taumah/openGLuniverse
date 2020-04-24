@@ -13,3 +13,5 @@ void leftFoot();
 void rightFoot();
 
 void lowerBody();
+void leftBodySide();
+void rightBodySide();

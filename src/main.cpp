@@ -7,7 +7,7 @@
 float angle = 0.0;
 
 float camera_pos[] = {0.0 , 0.0 , -15.0 };
-float R = 9, alpha = 0 , beta = 0; 
+float R = 15, alpha = 0 , beta = 0; 
 
 float armAngle = 0.0;
 float armAngle2 = 0.0;
@@ -72,6 +72,8 @@ static void display(void)
         // glTranslatef(0, -1, 0);
         glPushMatrix();
                 upperBody();
+                leftBodySide();
+                rightBodySide();
                 lowerBody();
         glPopMatrix();
         glPushMatrix();

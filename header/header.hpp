@@ -15,3 +15,5 @@ void rightFoot();
 void lowerBody();
 void leftBodySide();
 void rightBodySide();
+
+void hand(float armAngle);

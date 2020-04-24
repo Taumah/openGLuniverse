@@ -11,3 +11,5 @@ void head(float headAngle);
 
 void leftFoot();
 void rightFoot();
+
+void lowerBody();

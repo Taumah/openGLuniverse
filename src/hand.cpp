@@ -27,7 +27,8 @@ void hand(float armAngle){
                 gluCylinder(very_bottom_head, 0.15, 0.15, 1, 1024, 1024);
                 gluDeleteQuadric(very_bottom_head);
             glPopMatrix();
-        inclinaison -= 10;        
+        inclinaison -= 10;      
+          
     }
 
     glPushMatrix();

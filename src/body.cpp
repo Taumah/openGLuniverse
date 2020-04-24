@@ -6,7 +6,7 @@ extern GLUquadricObj *pObj;
 
 void drawUpperBody();
 
-void body(){
+void upperBody(){
     glPushMatrix();
         drawUpperBody();
 

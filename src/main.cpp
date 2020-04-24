@@ -69,8 +69,9 @@ static void display(void)
            rightArm(armAngle);
        glPopMatrix();
        glPushMatrix();
-        glTranslatef(0, -1, 0);
+        // glTranslatef(0, -1, 0);
         glPushMatrix();
+                upperBody();
                 lowerBody();
         glPopMatrix();
         glPushMatrix();

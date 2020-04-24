@@ -1,0 +1,1 @@
+float pytagore(float a , float b , float c);

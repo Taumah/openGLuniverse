@@ -24,7 +24,7 @@ void hand(float armAngle){
                 very_bottom_head = gluNewQuadric();
                 gluQuadricNormals(very_bottom_head, GLU_SMOOTH);
                 glColor3f(.93, .85, .02);
-                gluCylinder(very_bottom_head, 0.15, 0.15, 1, 1024, 1024);
+                gluCylinder(very_bottom_head, 0.15, 0.15, 1, 10, 10);
                 gluDeleteQuadric(very_bottom_head);
             glPopMatrix();
         inclinaison -= 10;      
@@ -38,7 +38,7 @@ void hand(float armAngle){
                 very_bottom_head = gluNewQuadric();
                 gluQuadricNormals(very_bottom_head, GLU_SMOOTH);
                 glColor3f(.93, .85, .02);
-                gluCylinder(very_bottom_head, 0.5, 0.5, 1, 1024, 1024);
+                gluCylinder(very_bottom_head, 0.5, 0.5, 1, 10, 10);
                 gluDeleteQuadric(very_bottom_head);
             glPopMatrix();
 

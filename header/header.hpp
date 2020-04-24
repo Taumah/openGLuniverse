@@ -1,6 +1,6 @@
 #define QUARTERTURN 90
-#define MIN_STACKS 1024
-#define MIN_SLICES 1024
+#define MIN_STACKS 10
+#define MIN_SLICES 10
 
 void leftArm(float armAngle);
 void rightArm(float armAngle);

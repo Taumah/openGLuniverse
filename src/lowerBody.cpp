@@ -13,7 +13,7 @@ void lowerBody(){
             GLUquadricObj *low_lowpart;
             low_lowpart = gluNewQuadric();
             gluQuadricNormals(low_lowpart, GLU_SMOOTH);
-            gluCylinder(low_lowpart, 2, .8, 2.5, 1024, 1024);
+            gluCylinder(low_lowpart, 2, .8, 2.5, 10, 10);
             gluDeleteQuadric(low_lowpart);
         glPopMatrix();
 
@@ -22,7 +22,7 @@ void lowerBody(){
                 GLUquadricObj *bottom_sphere;
                 bottom_sphere = gluNewQuadric();
                 gluQuadricNormals(bottom_sphere, GLU_SMOOTH);
-                gluSphere(bottom_sphere, .8, 1024, 1024);
+                gluSphere(bottom_sphere, .8, 10, 10);
                 gluDeleteQuadric(bottom_sphere);
             glPopMatrix();
     glPopMatrix();

@@ -13,7 +13,7 @@ void rightLeg(float kneeAngle, float thigh){
             GLUquadricObj *cuisso;
             cuisso = gluNewQuadric();
             gluQuadricNormals(cuisso, GLU_SMOOTH);
-            gluCylinder(cuisso, 1, .8, 2.5, 1024, 1024);
+            gluCylinder(cuisso, 1, .8, 2.5, 10, 10);
             gluDeleteQuadric(cuisso);
         glPopMatrix();
 
@@ -23,7 +23,7 @@ void rightLeg(float kneeAngle, float thigh){
             GLUquadricObj *genoux;
             genoux = gluNewQuadric();
             gluQuadricNormals(genoux, GLU_SMOOTH);
-            gluCylinder(genoux, .5, .5, 1.6, 1024, 1024);
+            gluCylinder(genoux, .5, .5, 1.6, 10, 10);
             gluDeleteQuadric(genoux);
         glPopMatrix();
 
@@ -32,7 +32,7 @@ void rightLeg(float kneeAngle, float thigh){
             GLUquadricObj *leftdisk;
             leftdisk = gluNewQuadric();
             gluQuadricNormals(leftdisk, GLU_SMOOTH);
-            gluDisk(leftdisk, 0, .5, 1024, 1024);
+            gluDisk(leftdisk, 0, .5, 10, 10);
             gluDeleteQuadric(leftdisk);
         glPopMatrix();
 
@@ -42,7 +42,7 @@ void rightLeg(float kneeAngle, float thigh){
             GLUquadricObj *rightdisk;
             rightdisk = gluNewQuadric();
             gluQuadricNormals(rightdisk, GLU_SMOOTH);
-            gluDisk(rightdisk, 0, .5, 1024, 1024);
+            gluDisk(rightdisk, 0, .5, 10, 10);
             gluDeleteQuadric(rightdisk);
         glPopMatrix();
         
@@ -52,7 +52,7 @@ void rightLeg(float kneeAngle, float thigh){
             GLUquadricObj *tibia;
             tibia = gluNewQuadric();
             gluQuadricNormals(tibia, GLU_SMOOTH);
-            gluCylinder(tibia, .7, .5, 2.5, 1024, 1024);
+            gluCylinder(tibia, .7, .5, 2.5, 10, 10);
             gluDeleteQuadric(tibia);
         glPopMatrix();
     glPopMatrix();

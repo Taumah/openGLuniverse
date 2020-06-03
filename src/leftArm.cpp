@@ -9,7 +9,7 @@ void leftArm(float armAngle){
 
     glPushMatrix();
         glTranslatef(-2, 0, 0);
-        glutWireSphere(0.5, 10 , 10);
+        glutWireSphere(0.5, MIN_SLICES, MIN_STACKS);
         glRotatef(60, 1, 0, 1);
         
         arm(LEFT);

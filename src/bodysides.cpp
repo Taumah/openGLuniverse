@@ -10,7 +10,7 @@ void leftBodySide(){
             GLUquadricObj *cuisso;
             cuisso = gluNewQuadric();
             gluQuadricNormals(cuisso, GLU_SMOOTH);
-            gluCylinder(cuisso, .7, .9, 2.5, 10, 10);
+            gluCylinder(cuisso, .7, .9, 2.5, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(cuisso);
         glPopMatrix();
 }
@@ -22,7 +22,7 @@ void rightBodySide(){
             GLUquadricObj *cuisso;
             cuisso = gluNewQuadric();
             gluQuadricNormals(cuisso, GLU_SMOOTH);
-            gluCylinder(cuisso, .7, .9, 2.5, 10, 10);
+            gluCylinder(cuisso, .7, .9, 2.5, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(cuisso);
         glPopMatrix();
 }

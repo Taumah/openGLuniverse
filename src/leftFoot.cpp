@@ -13,8 +13,7 @@ void leftFoot(){
             GLUquadricObj *talon;
             talon = gluNewQuadric();
             gluQuadricNormals(talon, GLU_SMOOTH);
-            gluCylinder(talon, .5, .5, .5, 10, 10);
-            gluDeleteQuadric(talon);
+            gluCylinder(talon, .5, .5, .5, MIN_SLICES, MIN_STACKS);
         glPopMatrix();
 
         glTranslatef(0, -.5, -.2);
@@ -23,7 +22,7 @@ void leftFoot(){
             GLUquadricObj *pied;
             pied = gluNewQuadric();
             gluQuadricNormals(pied, GLU_SMOOTH);
-            gluCylinder(pied, .5, .3, 2, 10, 10);
+            gluCylinder(pied, .5, .3, 2,MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(pied);
         glPopMatrix();
     glPopMatrix();

@@ -13,7 +13,7 @@ void head(float headAngle){
             GLUquadricObj *very_bottom_head;
             very_bottom_head = gluNewQuadric();
             gluQuadricNormals(very_bottom_head, GLU_SMOOTH);
-            gluCylinder(very_bottom_head, .65, .55, .2, 10, 10);
+            gluCylinder(very_bottom_head, .65, .55, .2,MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(very_bottom_head);
         glPopMatrix();
         
@@ -22,7 +22,7 @@ void head(float headAngle){
             GLUquadricObj *mid_bottom_head;
             mid_bottom_head = gluNewQuadric();
             gluQuadricNormals(mid_bottom_head, GLU_SMOOTH);
-            gluCylinder(mid_bottom_head, .45, .45, .3, 10, 10);
+            gluCylinder(mid_bottom_head, .45, .45, .3,MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(mid_bottom_head);
         glPopMatrix();
 
@@ -33,7 +33,7 @@ void head(float headAngle){
                 GLUquadricObj *bottom_head;
                 bottom_head = gluNewQuadric();
                 gluQuadricNormals(bottom_head, GLU_SMOOTH);
-                gluCylinder(bottom_head, .55, .7, 1, 10, 10);
+                gluCylinder(bottom_head, .55, .7, 1,MIN_SLICES, MIN_STACKS);
                 gluDeleteQuadric(bottom_head);
             glPopMatrix();
             
@@ -44,7 +44,7 @@ void head(float headAngle){
                 GLUquadricObj *top_head;
                 top_head = gluNewQuadric();
                 gluQuadricNormals(top_head, GLU_SMOOTH);
-                gluSphere(top_head, .7, 10, 10);
+                gluSphere(top_head, .7, MIN_SLICES, MIN_STACKS);
                 gluDeleteQuadric(top_head);
             glPopMatrix();
 

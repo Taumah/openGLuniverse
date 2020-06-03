@@ -17,11 +17,9 @@ void upperBody(){
 void drawUpperBody(){
 
     glTranslatef(0. , -0.5 , 0.);
-    pObj = gluNewQuadric();
+    
 
     glColor3f(.93 , .85 , .02);
-    gluQuadricNormals(pObj, GLU_SMOOTH);   // Create Smooth Normals ( NEW )
-    gluQuadricTexture(pObj, GL_TRUE);
 
     glBegin(GL_QUADS);
             //front face
@@ -36,10 +34,10 @@ void drawUpperBody(){
             // Back Face
         glNormal3f( 0.0f, 0.0f,-0.65f);      
 
-        glVertex3f(-1.0f, -1.25f, -1.0f);  // Bottom Right 
-        glVertex3f( 1.0f, -1.25f, -1.0f);  // Top Right 
-        glVertex3f( 1.0f, 1.25f,  -0.65f);  // Top Left 
-        glVertex3f(-1.0f, 1.25f,  -0.65f);  // Bottom Left 
+        glVertex3f( 1.0f, -1.25f,  -1.0f);  // Bottom Left 
+        glVertex3f(-1.0f, -1.25f,  -1.0f);  // Bottom Right 
+        glVertex3f(-1.0f, 1.25f,   -0.65f);  //Top Right
+        glVertex3f( 1.0f,  1.25f,  -0.65f);  // Top Left 
 
         // Top Face
         glNormal3f( 0.0f, 1.0f, 0.0f); 

@@ -2,22 +2,20 @@
 
 
 #define QUARTERTURN 90
-#define MIN_STACKS 10
-#define MIN_SLICES 10
+#define MIN_STACKS 20
+#define MIN_SLICES 20
 
-void leftArm(float armAngle);
-void rightArm(float armAngle);
-void upperBody();
-void leftLeg(float kneeAngle, float thigh);
-void rightLeg(float kneeAngle, float thigh);
+void leftArm(int armAngle);
+void rightArm(int armAngle);
+void upperBody(float headAngle);
+void leftLeg(float kneeAngle);
+void rightLeg(float kneeAngle);
 void head(float headAngle);
-void eye(int side , GLUquadricObj* obj);
+void eye(int side);
 
-void leftFoot();
-void rightFoot();
 
 void lowerBody();
 void leftBodySide();
 void rightBodySide();
 
-void hand(float armAngle);
+void hand(int side);

@@ -1,0 +1,1 @@
+void foot(int side);

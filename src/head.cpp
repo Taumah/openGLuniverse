@@ -11,8 +11,10 @@
 void head(float headAngle){
         //Tete
     glPushMatrix();
-    glColor3f(.93, .85, .02);
-        glTranslatef(0, 1, 0);
+        glColor3f(.93, .85, .02);
+        glTranslatef(0, 1.3, 0);
+
+
         glPushMatrix();
             glRotatef(-90, 1, 0, 0);
             GLUquadricObj *very_bottom_head;
@@ -52,34 +54,37 @@ void head(float headAngle){
                 gluSphere(top_head, .7, MIN_SLICES, MIN_STACKS);
                 gluDeleteQuadric(top_head);
 
-                
-                glPushMatrix();
-                    glTranslatef(0,0,.67);
-                    
-                    glColor3f( .04f , .04f , .04f );
-                    GLUquadricObj *eyes;
-                    eyes = gluNewQuadric();
-                    // gluQuadricNormals(eyes, GLU_SMOOTH);
-                    
-                    eye(LEFT , eyes);
-                    eye(RIGHT , eyes);
 
-                    gluDeleteQuadric(eyes);
+                glTranslatef(0,0,.67);
+
+                glPushMatrix();
+                
+                    eye(LEFT);
+                    
+                    eye(RIGHT);
 
                 glPopMatrix();
 
             glPopMatrix();
 
         glPopMatrix();
-        glTranslatef(0, -1.5, 0);
-        glColor3f(1, 1, 1);
     glPopMatrix();
 }
 
 
-void eye(int side , GLUquadricObj* eyes){
+void eye(int side){
     glPushMatrix();
-        glTranslatef(0.2 * side,0,0);
-        gluSphere(eyes, .12, MIN_SLICES, MIN_STACKS);
+
+        glColor3f( .04f , .04f , .04f );
+        GLUquadricObj *eyes;
+        eyes = gluNewQuadric();
+        // gluQuadricNormals(eyes, GLU_SMOOTH);
+        
+        glTranslatef(0.24 * side,0,0);
+        gluSphere(eyes, .18, MIN_SLICES, MIN_STACKS);
+    
+        gluDeleteQuadric(eyes);
+        
+        glColor3f(.93, .85, .02);
     glPopMatrix();
 }

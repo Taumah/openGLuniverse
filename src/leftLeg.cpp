@@ -3,10 +3,16 @@
 #include <stdio.h>
 
 #include "../header/header.hpp"
+#include "../header/utils/all.hpp"
 
-void leftLeg(float kneeAngle, float thigh){
+void leftLeg(float kneeAngle){
     
+
+
     glPushMatrix();
+
+    glRotatef(-kneeAngle*0.3 , 1 , 0 , 0 );
+
     glColor3f(.93, .85, .02);
         glTranslatef(-1, -3, 0);
         glPushMatrix();
@@ -14,7 +20,7 @@ void leftLeg(float kneeAngle, float thigh){
             GLUquadricObj *cuisso;
             cuisso = gluNewQuadric();
             gluQuadricNormals(cuisso, GLU_SMOOTH);
-            gluCylinder(cuisso, 1, .8, 2.5, 1024, 1024);
+            gluCylinder(cuisso, 0.8, .6, 2.5, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(cuisso);
         glPopMatrix();
 
@@ -24,7 +30,7 @@ void leftLeg(float kneeAngle, float thigh){
             GLUquadricObj *genoux;
             genoux = gluNewQuadric();
             gluQuadricNormals(genoux, GLU_SMOOTH);
-            gluCylinder(genoux, .5, .5, 1.6, 1024, 1024);
+            gluCylinder(genoux, .5, .5, 1.6, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(genoux);
         glPopMatrix();
         
@@ -33,9 +39,10 @@ void leftLeg(float kneeAngle, float thigh){
             GLUquadricObj *leftdisk;
             leftdisk = gluNewQuadric();
             gluQuadricNormals(leftdisk, GLU_SMOOTH);
-            gluDisk(leftdisk, 0, .5, 1024, 1024);
+            gluDisk(leftdisk, 0, .5, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(leftdisk);
         glPopMatrix();
+
 
         glPushMatrix();
             glTranslatef(1.6, 0, 0);
@@ -43,9 +50,13 @@ void leftLeg(float kneeAngle, float thigh){
             GLUquadricObj *rightdisk;
             rightdisk = gluNewQuadric();
             gluQuadricNormals(rightdisk, GLU_SMOOTH);
-            gluDisk(rightdisk, 0, .5, 1024, 1024);
+            gluDisk(rightdisk, 0, .5, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(rightdisk);
         glPopMatrix();
+
+
+        glRotatef(kneeAngle , 1 , 0 , 0);
+
 
         glTranslatef(0.8, -.3, 0);
         glPushMatrix();
@@ -53,8 +64,12 @@ void leftLeg(float kneeAngle, float thigh){
             GLUquadricObj *tibia;
             tibia = gluNewQuadric();
             gluQuadricNormals(tibia, GLU_SMOOTH);
-            gluCylinder(tibia, .7, .5, 2.5, 1024, 1024);
+            gluCylinder(tibia, .65, .45, 2.5, MIN_SLICES, MIN_STACKS);
             gluDeleteQuadric(tibia);
         glPopMatrix();
+
+
+        foot(LEFT);
+
     glPopMatrix();
 }

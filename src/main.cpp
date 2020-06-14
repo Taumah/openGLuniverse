@@ -9,8 +9,8 @@ float angle = 0.0;
 float camera_pos[] = {0.0 , 0.0 , -15.0 };
 float R = 25, alpha = 0 , beta = 0; 
 
-float armAngle = 0.0;
-float armAngle2 = 0.0;
+int armAngle = 60;
+int armAngle2 = 60;
 float headAngle= 0.0;
 float kneeAngle=0.0;
 float thigh = 0.0;
@@ -61,31 +61,18 @@ static void display(void)
     // glRotatef(0, 0,1,0);                      // déplacement caméra
     
     glPushMatrix();
-       glPushMatrix();
-           head(headAngle);
-       glPopMatrix();
-       glPushMatrix();
-            leftArm(armAngle);
-           rightArm(armAngle);
-       glPopMatrix();
-       glPushMatrix();
-        // glTranslatef(0, -1, 0);
-        glPushMatrix();
-                upperBody();
-                leftBodySide();
-                rightBodySide();
-                lowerBody();
-        glPopMatrix();
-        glPushMatrix();
-            rightLeg(kneeAngle, thigh);
-            leftLeg(kneeAngle2, thigh2);
-        glPopMatrix();
+        
+        upperBody(headAngle);
+        leftArm(armAngle);
+        rightArm(armAngle);
+
+        lowerBody();
+        
+        rightLeg(kneeAngle);
+        leftLeg(kneeAngle2);
+
     glPopMatrix();
-       glPushMatrix();
-           leftFoot();
-           rightFoot();
-       glPopMatrix();
-    glPopMatrix();
+   
     glutSwapBuffers();
     glFlush();
 }
@@ -93,12 +80,19 @@ static void display(void)
 /* Fonction de mise à jour: mouvements des objets*/
 void update(int value){
     
-    // if (a==false) {
-    //      headAngle>=-90?headAngle-=5:a=true;
-    // }
-    // if (a==true){
-    //     headAngle<=90?headAngle+=5:a=false;
-    // }
+    if (a==false) {
+         headAngle>=-75?headAngle-=5:a=true;
+    }
+    else{
+        headAngle<=75?headAngle+=5:a=false;
+    }
+
+    if (b==false) {
+        armAngle>=-75?armAngle-=3:b=true;
+    }
+    else{
+        armAngle<=75?armAngle+=3:b=false;
+    }
     // if (leftLegW == true){
     //     if (thigh >=-20){
     //         thigh-=5;
@@ -147,14 +141,17 @@ static void key(unsigned char key, int x, int y)
         case 'H':
             headAngle<=90?headAngle+=5:headAngle-=0;
             break;
-
-
-
         case 'k':
-            kneeAngle<=140?kneeAngle+=5:kneeAngle+=0;
+            kneeAngle<=120?kneeAngle+=5:kneeAngle+=0;
             break;
         case 'K':
-            kneeAngle>=0?kneeAngle-=5:kneeAngle+=0;
+            kneeAngle>0?kneeAngle-=5:kneeAngle+=0;
+            break;
+        case 'l':
+            kneeAngle2<=120?kneeAngle2+=5:kneeAngle2+=0;
+            break;
+        case 'L':
+            kneeAngle2>0?kneeAngle2-=5:kneeAngle2+=0;
             break;
         case 't':
             thigh>=-100?thigh-=5:thigh+=0;
@@ -162,9 +159,6 @@ static void key(unsigned char key, int x, int y)
         case 'T':
             thigh<=45?thigh+=5:thigh+=0;
             break;
-
-
-            
         //MOVING CAMERA    
         case 's':
             beta -= 0.05;
@@ -218,7 +212,7 @@ int main(int argc, char *argv[])
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
-    //glutTimerFunc(20, update, 1);
+    glutTimerFunc(20, update, 1);
     glutKeyboardFunc(key);
     glutIdleFunc(idle);
 

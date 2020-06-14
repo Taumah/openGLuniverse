@@ -1,7 +1,12 @@
-#include "../header/header.hpp"
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "../header/header.hpp"
+
+
+#define LEFT 1
+#define RIGHT -1
 
 void head(float headAngle){
         //Tete
@@ -46,10 +51,35 @@ void head(float headAngle){
                 gluQuadricNormals(top_head, GLU_SMOOTH);
                 gluSphere(top_head, .7, MIN_SLICES, MIN_STACKS);
                 gluDeleteQuadric(top_head);
+
+                
+                glPushMatrix();
+                    glTranslatef(0,0,.67);
+                    
+                    glColor3f( .04f , .04f , .04f );
+                    GLUquadricObj *eyes;
+                    eyes = gluNewQuadric();
+                    // gluQuadricNormals(eyes, GLU_SMOOTH);
+                    
+                    eye(LEFT , eyes);
+                    eye(RIGHT , eyes);
+
+                    gluDeleteQuadric(eyes);
+
+                glPopMatrix();
+
             glPopMatrix();
 
         glPopMatrix();
         glTranslatef(0, -1.5, 0);
         glColor3f(1, 1, 1);
+    glPopMatrix();
+}
+
+
+void eye(int side , GLUquadricObj* eyes){
+    glPushMatrix();
+        glTranslatef(0.2 * side,0,0);
+        gluSphere(eyes, .12, MIN_SLICES, MIN_STACKS);
     glPopMatrix();
 }

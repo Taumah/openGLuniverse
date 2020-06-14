@@ -93,12 +93,12 @@ static void display(void)
 /* Fonction de mise à jour: mouvements des objets*/
 void update(int value){
     
-    if (a==false) {
-         headAngle>=-90?headAngle-=5:a=true;
-    }
-    if (a==true){
-        headAngle<=90?headAngle+=5:a=false;
-    }
+    // if (a==false) {
+    //      headAngle>=-90?headAngle-=5:a=true;
+    // }
+    // if (a==true){
+    //     headAngle<=90?headAngle+=5:a=false;
+    // }
     // if (leftLegW == true){
     //     if (thigh >=-20){
     //         thigh-=5;
@@ -147,6 +147,9 @@ static void key(unsigned char key, int x, int y)
         case 'H':
             headAngle<=90?headAngle+=5:headAngle-=0;
             break;
+
+
+
         case 'k':
             kneeAngle<=140?kneeAngle+=5:kneeAngle+=0;
             break;
@@ -159,6 +162,9 @@ static void key(unsigned char key, int x, int y)
         case 'T':
             thigh<=45?thigh+=5:thigh+=0;
             break;
+
+
+            
         //MOVING CAMERA    
         case 's':
             beta -= 0.05;

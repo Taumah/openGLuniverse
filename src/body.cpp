@@ -1,7 +1,9 @@
-#include "../header/header.hpp"
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "../header/header.hpp"
+
 extern GLUquadricObj *pObj;
 
 void drawUpperBody();

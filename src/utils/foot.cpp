@@ -1,14 +1,17 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
-#include "../header/header.hpp"
+#include "../../header/utils/all.hpp"
+#include "../../header/header.hpp"
 
-void leftFoot(){
+void foot(int side ){
     
     glPushMatrix();
-    glColor3f(.93, .85, .02);
-        glTranslatef(-1, -8.6, 0);
+        glColor3f(.93, .85, .02);
+        glTranslatef(0, -2.6, 0);
+
         glPushMatrix();
             glRotatef(90, 1, 0, 0);
             GLUquadricObj *talon;

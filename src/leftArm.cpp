@@ -5,12 +5,13 @@
 #include "../header/utils/all.hpp"
 #include "../header/header.hpp"
 
-void leftArm(float armAngle){
+void leftArm(int armAngle){
 
     glPushMatrix();
+
         glTranslatef(-2, 0, 0);
         glutWireSphere(0.5, MIN_SLICES, MIN_STACKS);
-        glRotatef(60, 1, 0, 1);
+        glRotatef(armAngle, 0, 0, 1);
         
         arm(LEFT);
 
@@ -20,5 +21,8 @@ void leftArm(float armAngle){
         glRotatef(10, 0, 0, 1);
 
         forearm(LEFT);
+
+        hand(LEFT);
+
     glPopMatrix();
 }

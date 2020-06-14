@@ -6,8 +6,10 @@
 
 void lowerBody(){
     glPushMatrix();
+
         glColor3f(.93, .85, .02);
         glTranslatef(0, -2, 0);
+
         glPushMatrix();
             glRotatef(90, 1, 0, 0);
             GLUquadricObj *low_lowpart;
@@ -19,11 +21,12 @@ void lowerBody(){
 
         glTranslatef(0, -2.3, 0);
         glPushMatrix();
-                GLUquadricObj *bottom_sphere;
-                bottom_sphere = gluNewQuadric();
-                gluQuadricNormals(bottom_sphere, GLU_SMOOTH);
-                gluSphere(bottom_sphere, .8, MIN_SLICES, MIN_STACKS);
-                gluDeleteQuadric(bottom_sphere);
-            glPopMatrix();
+            GLUquadricObj *bottom_sphere;
+            bottom_sphere = gluNewQuadric();
+            gluQuadricNormals(bottom_sphere, GLU_SMOOTH);
+            gluSphere(bottom_sphere, .8, MIN_SLICES, MIN_STACKS);
+            gluDeleteQuadric(bottom_sphere);
+        glPopMatrix();
+
     glPopMatrix();
 }

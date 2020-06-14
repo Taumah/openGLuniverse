@@ -11,36 +11,44 @@
 
 // extern float movAngle;
 
-void hand(float armAngle){
+void hand(int side){
+
+    glTranslatef(1.7*side , 0 , 0  );
+    glRotatef(90 , 0 , 1 * side , 0);
+
+    glPushMatrix();
+        glScalef(0.5, 1, 1);
+        GLUquadricObj *palm;
+        palm = gluNewQuadric();
+        gluQuadricNormals(palm, GLU_SMOOTH);
+        glColor3f(.93, .85, .02);
+        gluCylinder(palm, 0.3, 0.3, 0.6  ,MIN_SLICES, MIN_STACKS);
+        gluDeleteQuadric(palm);
+    glPopMatrix();
+
+
 
     int inclinaison = 50;
-    
+
+    glTranslatef( 0 , 0 , 0.2);
+
 
     for(int i = 0; i < 5; i++){       
         glPushMatrix();
-                glRotatef(100, inclinaison, 20, 20);
-                glTranslatef(0, 0, 0.5);
-                GLUquadricObj *very_bottom_head;
-                very_bottom_head = gluNewQuadric();
-                gluQuadricNormals(very_bottom_head, GLU_SMOOTH);
-                glColor3f(.93, .85, .02);
-                gluCylinder(very_bottom_head, 0.15, 0.15, 1, MIN_SLICES, MIN_STACKS);
-                gluDeleteQuadric(very_bottom_head);
-            glPopMatrix();
-        inclinaison -= 10;      
+            glRotatef(inclinaison, 1, 0, 0);
+            glTranslatef(0, 0, 0.4);
+            GLUquadricObj *finger;
+            finger = gluNewQuadric();
+            gluQuadricNormals(finger, GLU_SMOOTH);
+            glColor3f(.93, .85, .02);
+            gluCylinder(finger, 0.15, 0.05, 0.6, MIN_SLICES, MIN_STACKS);
+            gluDeleteQuadric(finger);
+        glPopMatrix();
+        inclinaison -= 20;      
           
     }
 
-    glPushMatrix();
-                glRotatef(50, 50, 50, 20);
-                glScalef(0.5, 1, 1);
-                GLUquadricObj *very_bottom_head;
-                very_bottom_head = gluNewQuadric();
-                gluQuadricNormals(very_bottom_head, GLU_SMOOTH);
-                glColor3f(.93, .85, .02);
-                gluCylinder(very_bottom_head, 0.5, 0.5, 1,MIN_SLICES, MIN_STACKS);
-                gluDeleteQuadric(very_bottom_head);
-            glPopMatrix();
+    
 
 
     

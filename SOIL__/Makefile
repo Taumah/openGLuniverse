@@ -3,7 +3,7 @@ compil:
 	lib/glut32.lib lib/libSOIL.a -lglut -lGL -lGLU -lSOIL
 
 main:
-	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/src/main.cpp" -o obj/Debug/src/main.o
+	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/CLionProjects/openGLuniverse/SOIL__/src/main.cpp" -o obj/Debug/src/main.o
 
 block:
 	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/src/Block.cpp" -o obj/Debug/src/Block.o

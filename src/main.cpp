@@ -18,7 +18,9 @@ float kneeAngle2=0.0;
 float thigh2 = 0.0;
 float cameraAngle = 0.0;
 float movAngle =0.0;
-bool a=true, b=true, c=true, d=true, leftLegW = true, rightLegW = false;
+float metronomeTime = 0.0;
+
+bool a=true, b=true, c=true, d=true, leftLegW = true, rightLegW = false , metronomeM = true;
 
 const uint16_t WIN_WIDTH= 800 , WIN_HEIGHT = 500;
 GLUquadricObj *pObj;
@@ -46,19 +48,13 @@ static void display(void)
 
     glLoadIdentity();
 
-    camera_pos[0] = R * cos(beta) * sin(alpha);
-	camera_pos[1] = R * sin(beta);
-	camera_pos[2] = R * cos(beta) * cos(alpha);
-
-	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    camera(camera_pos);
     // glTranslatef(0.0f, 0.0f, -15.0f);
-    glRotatef(0, 0,1,0);                      // déplacement caméra
+    
     glColor3f(1.0f, 1.0f, 1.0f);
     
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
-
-    // glRotatef(0, 0,1,0);                      // déplacement caméra
     
     glPushMatrix();
         
@@ -72,6 +68,8 @@ static void display(void)
         leftLeg(kneeAngle2);
 
     glPopMatrix();
+
+    metronome(metronomeTime);
    
     glutSwapBuffers();
     glFlush();
@@ -93,6 +91,15 @@ void update(int value){
     else{
         armAngle<=75?armAngle+=3:b=false;
     }
+
+
+    if (metronomeM==false) {
+        metronomeTime>=-75?metronomeTime-=3:metronomeM=true;
+    }
+    else{
+        metronomeTime<=75?metronomeTime+=3:metronomeM=false;
+    }
+
     // if (leftLegW == true){
     //     if (thigh >=-20){
     //         thigh-=5;
@@ -244,3 +251,11 @@ int main(int argc, char *argv[])
 }
 
 
+void camera(float *camera_pos){
+
+    camera_pos[0] = R * cos(beta) * sin(alpha);
+	camera_pos[1] = R * sin(beta);
+	camera_pos[2] = R * cos(beta) * cos(alpha);
+
+	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+}

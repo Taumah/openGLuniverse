@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.hpp"
-#include "../../header/header.hpp"
-#include "../../header/commons/all.hpp"
+#include "../../../include/header.hpp"
+#include "../../../include/utils/all.hpp"
+#include "../../../include/commons/all.hpp"
 
 
 void forearm(int side){

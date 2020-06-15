@@ -10,7 +10,7 @@ void rightLeg(float kneeAngle){
 
     glPushMatrix();
 
-    glRotatef(-kneeAngle*0.3 , 1 , 0 , 0 );
+    glRotatef(-kneeAngle*0.4 , 1 , 0 , 0 );
 
 
     glColor3f(.93, .85, .02);

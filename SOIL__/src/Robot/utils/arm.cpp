@@ -7,10 +7,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.hpp"
-#include "../../header/header.hpp"
-
-
+#include "../../../include/header.hpp"
+#include "../../../include/utils/all.hpp"
 
 void arm(int direction){
     glPushMatrix();

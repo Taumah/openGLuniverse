@@ -8,13 +8,14 @@
 
 #include "Camera.h"
 #include "Map.h"
-
+#include "Robot.h"
 
 // Objet Camera
 Camera *cam = new Camera();
 // Objet Sc�ne
 Map *m = new Map();
 
+Robot *c3 = new Robot();
 
 
 /** GESTION FENETRE **/
@@ -147,6 +148,7 @@ void renderScene(void)
     m->DrawGround();
     m->DrawSkybox(cam);
 
+    c3->Draw();
 
     glPushMatrix();
         glTranslatef( 0 , 3 , 1.00);    

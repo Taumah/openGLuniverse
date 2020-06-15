@@ -1,22 +1,26 @@
+dir := /home/thomas/CLionProjects/openGLuniverse/SOIL__/src
 compil:
-	g++ -o "bin/Debug/Implémentation SOIL" obj/Debug/src/Block.o obj/Debug/src/Camera.o obj/Debug/src/main.o obj/Debug/src/Map.o \
+	g++ -o "bin/Debug/Implémentation SOIL" obj/Debug/src/Block.o obj/Debug/src/Robot.o obj/Debug/src/Camera.o obj/Debug/src/main.o obj/Debug/src/Map.o \
 	lib/glut32.lib lib/libSOIL.a -lglut -lGL -lGLU -lSOIL
 
 main:
-	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/CLionProjects/openGLuniverse/SOIL__/src/main.cpp" -o obj/Debug/src/main.o
+	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/main.cpp -o obj/Debug/src/main.o
 
 block:
-	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/src/Block.cpp" -o obj/Debug/src/Block.o
+	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Block.cpp -o obj/Debug/src/Block.o
 
 
 camera:
-	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/src/Camera.cpp" -o obj/Debug/src/Camera.o
+	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Camera.cpp -o obj/Debug/src/Camera.o
 
 map:
-	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c "/home/thomas/CLionProjects/openGLuniverse/SOIL__/src/Map.cpp" -o obj/Debug/src/Map.o
+	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Map.cpp -o obj/Debug/src/Map.o
+
+robot:
+	g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Robot.cpp -o obj/Debug/src/Robot.o 
 
 launch:
 	./"bin/Debug/Implémentation SOIL"
 
 all:
-	make main block camera map compil launch
+	make main block camera map robot compil launch

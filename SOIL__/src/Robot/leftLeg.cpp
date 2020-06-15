@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../header/header.hpp"
-#include "../header/utils/all.hpp"
+#include "../../include/header.hpp"
+#include "../../include/utils/all.hpp"
 
 void leftLeg(float kneeAngle){
     

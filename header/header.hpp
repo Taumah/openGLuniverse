@@ -19,3 +19,8 @@ void leftBodySide();
 void rightBodySide();
 
 void hand(int side);
+
+
+void camera(float* camera);
+
+void metronome(float time);

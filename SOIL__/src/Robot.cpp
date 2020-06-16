@@ -3,10 +3,10 @@
 Robot::Robot()
 {
     
-    for (int i = 0; i < 3; i++)
-    {
-        robot_pos[i] = 0;
-    }
+    robot_pos[0] = 0.0;
+    robot_pos[1] = 6;
+    robot_pos[2] = 0.0;
+
     
 
     headAngle = 0.0;
@@ -20,6 +20,7 @@ void Robot::Draw()
 {
     glPushMatrix();
         
+        glScalef(0.25,0.25,0.25);
         glTranslatef(this->robot_pos[0] , this->robot_pos[1] , this->robot_pos[2]);
 
         upperBody(this->headAngle);

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-#include "../header/header.hpp"
+#include "../../include/header.hpp"
 
 void leftBodySide(){
     glPushMatrix();

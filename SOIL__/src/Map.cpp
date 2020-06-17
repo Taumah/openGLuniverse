@@ -44,7 +44,7 @@ void Map::LoadTextures()
 
 void Map::DrawGround()
 {
-    Block *b = new Block(2.0f, 2.0f, 2.0f);
+    // Block *b = new Block(2.0f, 2.0f, 2.0f);
 
     glEnable(GL_TEXTURE_2D);
     glColor3f(1.0f, 1.0f, 1.0f);
@@ -65,14 +65,14 @@ void Map::DrawGround()
     glVertex3f(50.0f, 0.0f, -50.0f);
     glEnd();
     glTranslatef(0.0f, 1.0f, 0.0f);
-    b->SetTexture(FRONT, ListeTextures[1]);
-    b->SetTexture(BACK, ListeTextures[7]);
-    b->SetTexture(TOP, ListeTextures[12]);
-    b->SetTexture(BOT, ListeTextures[4]);
-    b->SetTexture(RIGHT, ListeTextures[17]);
-    b->SetTexture(LEFT, ListeTextures[9]);
-    b->SetTexture(SPHERE, ListeTextures[19]);
-    b->Draw();
+    // b->SetTexture(FRONT, ListeTextures[1]);
+    // b->SetTexture(BACK, ListeTextures[7]);
+    // b->SetTexture(TOP, ListeTextures[12]);
+    // b->SetTexture(BOT, ListeTextures[4]);
+    // b->SetTexture(RIGHT, ListeTextures[17]);
+    // b->SetTexture(LEFT, ListeTextures[9]);
+    // b->SetTexture(SPHERE, ListeTextures[19]);
+    // b->Draw();
 }
 
 void Map::DrawSkybox(Camera *cam)

@@ -7,12 +7,14 @@
 float angle = 0.0;
 
 float camera_pos[] = {0.0 , 0.0 , -15.0 };
+float robot_pos[] = {0.0 , 0.0 , 0.0};
+
 float R = 25, alpha = 0 , beta = 0; 
 
 int armAngle = 60;
 int armAngle2 = 60;
 float headAngle= 0.0;
-float kneeAngle=0.0;
+float kneeAngle= 0.0;
 float thigh = 0.0;
 float kneeAngle2=0.0;
 float thigh2 = 0.0;
@@ -21,7 +23,7 @@ float movAngle =0.0;
 float metronomeTime = 0.0;
 
 bool a=true, b=true, c=true, d=true, leftLegW = true, rightLegW = false , metronomeM = true;
-
+bool walking = false;
 const uint16_t WIN_WIDTH= 800 , WIN_HEIGHT = 500;
 GLUquadricObj *pObj;
 
@@ -56,18 +58,7 @@ static void display(void)
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
     
-    glPushMatrix();
-        
-        upperBody(headAngle);
-        leftArm(armAngle);
-        rightArm(armAngle);
-
-        lowerBody();
-        
-        rightLeg(kneeAngle);
-        leftLeg(kneeAngle2);
-
-    glPopMatrix();
+    robot(robot_pos);
 
     metronome(metronomeTime);
    
@@ -99,6 +90,27 @@ void update(int value){
     else{
         metronomeTime<=75?metronomeTime+=3:metronomeM=false;
     }
+
+    if (walking==false) {
+        if(kneeAngle <= 0){
+            walking=true;  
+        }
+        else{
+            kneeAngle-=3;
+            robot_pos[2] += 0.01;
+        }
+    }
+    else{
+        if(kneeAngle>=60){
+            walking=false; 
+        }
+        else
+        {
+            kneeAngle+=3;
+            robot_pos[2] += 0.01;
+        }
+    }
+
 
     // if (leftLegW == true){
     //     if (thigh >=-20){

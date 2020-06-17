@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../header/header.hpp"
-
+#include "../../include/header.hpp"
 
 #define LEFT 1
 #define RIGHT -1

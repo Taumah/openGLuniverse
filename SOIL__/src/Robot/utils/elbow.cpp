@@ -7,10 +7,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.hpp"
-#include "../../header/header.hpp"
-
-extern GLUquadricObj *pObj;
+#include "../../../include/utils/all.hpp"
 
 void elbow(){
 

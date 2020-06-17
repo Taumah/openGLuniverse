@@ -7,14 +7,14 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.hpp"
-#include "../../header/header.hpp"
-
-extern GLUquadricObj *pObj;
-
+#include "../../../include/header.hpp"
+#include "../../../include/utils/all.hpp"
 
 void arm(int direction){
     glPushMatrix();
+        
+        GLUquadricObj *pObj;
+
         glColor3f(.93 , .85 , .02);
         if( (pObj = gluNewQuadric() ) == 0 ){
             printf("No memory when creating forearm");

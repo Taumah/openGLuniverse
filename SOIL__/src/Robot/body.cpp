@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../header/header.hpp"
-
-extern GLUquadricObj *pObj;
+#include "../../include/header.hpp"
 
 void upperBody(float headAngle){
     glPushMatrix();

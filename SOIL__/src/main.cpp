@@ -8,13 +8,14 @@
 
 #include "Camera.h"
 #include "Map.h"
-
+#include "Robot.h"
 
 // Objet Camera
 Camera *cam = new Camera();
 // Objet Sc�ne
 Map *m = new Map();
 
+Robot *c3po = new Robot();
 
 
 /** GESTION FENETRE **/
@@ -52,6 +53,9 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         break;
     case 'q':
         cam->deltaStrafe = 1;
+        break;
+    case 'w':
+        c3po->walking = true;
         break;
     }
 }
@@ -147,25 +151,7 @@ void renderScene(void)
     m->DrawGround();
     m->DrawSkybox(cam);
 
-
-    glPushMatrix();
-        glTranslatef( 0 , 3 , 1.00);    
-        glRotatef(10 , 0 , 0  , 1);
-
-        glBegin(GL_QUADS);
-
-            glColor3f(  0.7f , 0.3f , 0.5f );
-
-            glNormal3f( 0.0f, 0.0f, 0.0f);      
-        
-            glVertex3f(-1.0f, -1.25f,  0 );  // Bottom Left 
-            glVertex3f( 1.0f, -1.25f,  0 );  // Bottom Right 
-            glVertex3f( 1.0f,  1.25f,  0);  // Top Right 
-            glVertex3f(-1.0f,  1.25f,  0);  //Top Left
-
-
-        glEnd();
-    glPopMatrix();
+    c3po->Draw();
 
     glutSwapBuffers();
 }

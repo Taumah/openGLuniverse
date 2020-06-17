@@ -7,16 +7,14 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../../header/utils/all.hpp"
-#include "../../header/header.hpp"
-#include "../../header/commons/all.hpp"
-
-
-extern GLUquadricObj *pObj;
-
+#include "../../../include/header.hpp"
+#include "../../../include/utils/all.hpp"
+#include "../../../include/commons/all.hpp"
 
 
 void forearm(int side){
+
+    GLUquadricObj *pObj;
 
     double forearmBase = 0.5;    //  either opposite or adjacent seg
     double forearmTop  = 0.25;   //  either opposite or adjacent seg  MUST BE TINIER THAN forearmBase

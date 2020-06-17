@@ -3,9 +3,10 @@
 
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <GL/glut.h>
+#include <SOIL/SOIL.h>
 
-#include "glut.h"
-#include "SOIL.h"
+// #include "SOIL.h"
 
 #include "Camera.h"
 
@@ -13,7 +14,7 @@ class Map
 {
     public:
         Map();
-        // Stockage des références aux textures
+        // Stockage des rï¿½fï¿½rences aux textures
         GLuint ListeTextures[20];
         GLuint Skybox[6];
         void LoadTextures(void);

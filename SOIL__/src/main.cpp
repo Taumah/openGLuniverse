@@ -18,6 +18,17 @@ Map *m = new Map();
 Robot *c3po = new Robot();
 
 
+const GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 1.0f };
+const GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
+const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+const GLfloat light_position[] = { 2.0f, 5.0f, 5.0f, 0.0f };
+
+const GLfloat mat_ambient[]    = { 0.7f, 0.7f, 0.7f, 1.0f };
+const GLfloat mat_diffuse[]    = { 0.8f, 0.8f, 0.8f, 1.0f };
+const GLfloat mat_specular[]   = { 1.0f, 1.0f, 1.0f, 1.0f };
+const GLfloat high_shininess[] = { 100.0f };
+
+
 /** GESTION FENETRE **/
 void reshapeWindow(int w, int h)
 {
@@ -39,7 +50,11 @@ void KeyboardDown(unsigned char key, int xx, int yy)
 {
     switch(key)
     {
+    case '0': // Reset Robot
+        c3po = new Robot();
+        break;
     case 'e': // Unlock Camera
+        // c3po->locked = cam->locked;
         cam->locked = (cam->locked)?0:1;
         break;
     case 'z':
@@ -54,10 +69,21 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'q':
         cam->deltaStrafe = 1;
         break;
+
+    //Robot specials    
     case 'w':
-        c3po->walking = true;
+        c3po->walking = !c3po->walking;
+        break;
+    case 'r':
+        c3po->direction += 2;
+        break;
+    case 'R':
+        c3po->direction -= 2;
         break;
     }
+
+    (void)xx;(void)yy;
+
 }
 void KeyboardUp(unsigned char key, int xx, int yy)
 {
@@ -72,6 +98,8 @@ void KeyboardUp(unsigned char key, int xx, int yy)
         cam->deltaStrafe = 0;
         break;
     }
+
+    (void)xx;(void)yy;
 }
 void SpecialDown(int key, int xx, int yy)
 {
@@ -90,6 +118,8 @@ void SpecialDown(int key, int xx, int yy)
         cam->deltaStrafe = 1;
         break;
     }
+    (void)xx;(void)yy;
+
 }
 void SpecialUp(int key, int xx, int yy)
 {
@@ -104,6 +134,8 @@ void SpecialUp(int key, int xx, int yy)
         cam->deltaStrafe = 0;
         break;
     }
+    (void)xx;(void)yy;
+
 }
 
 /** FONCTIONS DE GESTION SOURIS (ORIENTATION CAMERA) **/
@@ -135,6 +167,8 @@ void computePos(int inutile)
 {
     cam->updatePos();
     glutTimerFunc(10, computePos, 0);
+
+    (void)inutile;
 }
 
 /** AFFICHAGE **/
@@ -166,9 +200,9 @@ int main(int argc, char **argv)
     /** CREATION FENETRE **/
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100,100);
-    glutInitWindowSize(320,320);
-    glutCreateWindow("Impl�mentation :: Textures");
+    glutInitWindowPosition(500,300);
+    glutInitWindowSize(500,500);
+    glutCreateWindow("C3p0 SHOW");
 
     /** FONCTIONS GLUT **/
     glutDisplayFunc(renderScene);
@@ -177,7 +211,7 @@ int main(int argc, char **argv)
     glutTimerFunc(10, computePos, 0);
 
     /** GESTION CLAVIER **/
-    glutIgnoreKeyRepeat(1);
+    glutIgnoreKeyRepeat(0);  //  != 0 to disable auto-repeat
     glutKeyboardFunc(KeyboardDown);
     glutKeyboardUpFunc(KeyboardUp);
     glutSpecialFunc(SpecialDown);
@@ -193,6 +227,27 @@ int main(int argc, char **argv)
     /** INIT GL STATES **/
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
+
+    // glEnable(GL_CULL_FACE);
+    // glCullFace(GL_BACK);
+
+    // glEnable(GL_DEPTH_TEST);
+    // glDepthFunc(GL_LESS);
+
+    // glEnable(GL_LIGHT0);
+    // glEnable(GL_NORMALIZE);
+    // glEnable(GL_COLOR_MATERIAL);
+    // glEnable(GL_LIGHTING);
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT,  light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE,  light_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT,   mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE,   mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR,  mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
 
     glutMainLoop();
 

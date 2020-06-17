@@ -3,16 +3,32 @@
 
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <GL/glut.h>
 #include <math.h>
 
-#include "glut.h"
-#include "SOIL.h"
+#include <SOIL/SOIL.h>
+
+// #include "SOIL.h"
 
 #define LEFT -1
 #define RIGHT 1
 #define MIN_SLICES 20
 #define MIN_STACKS 20
 #define QUARTERTURN 90
+
+#define X_GRID 0
+#define Y_GRID 1
+#define Z_GRID 2
+
+#define WALKING_GAP 0.1
+
+
+
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+
+
+
 class Robot
 {
     public:
@@ -20,18 +36,29 @@ class Robot
         void Draw();
 
         bool walking;
+        bool locked;
 
         float robot_pos[3];
+        float direction;
 
         float headAngle;
         float armAngle;
-        float kneeAngle;
-        float kneeAngle2;
 
     protected:
 
     private:
             void Walk();
+            void updatePos();
+
+            bool raisingArms;
+
+            bool raisingLegL;
+            bool raisingLegR;
+            float kneeAngleL;
+            float kneeAngleR;
+            
+
+            bool lookAround;
 
 };
 

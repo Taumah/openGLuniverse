@@ -3,31 +3,40 @@
 Robot::Robot()
 {
     
-    robot_pos[0] = 0.0;
-    robot_pos[1] = 6;
-    robot_pos[2] = 0.0;
+    robot_pos[X_GRID] = 0.0;
+    robot_pos[Y_GRID] = 6;
+    robot_pos[Z_GRID] = 0.0;
 
     
     walking = false;
+    raisingArms = false;
+    lookAround = false;
+
+    raisingLegL = false , raisingLegR = false;
+
+    // locked = true;
 
     headAngle = 0.0;
     armAngle = 0.0;
-    kneeAngle = 0.0;
-    kneeAngle2 = 0.0;
+    kneeAngleL = 0.0;
+    kneeAngleR = 0.0;
+
+    direction = 0.0;
 
 }
 
 void Robot::Draw()
 {
 
-    if(this->walking){
+    if( !this->locked && this->walking ){
         this->Walk();
     }
 
     glPushMatrix();
         
         glScalef(0.25,0.25,0.25);
-        glTranslatef(this->robot_pos[0] , this->robot_pos[1] , this->robot_pos[2]);
+        glTranslatef(this->robot_pos[X_GRID] , this->robot_pos[Y_GRID] , this->robot_pos[Z_GRID]);
+        glRotatef(this->direction , 0 , 1 , 0);
 
         upperBody(this->headAngle);
         leftArm(this->armAngle);
@@ -35,17 +44,48 @@ void Robot::Draw()
 
         lowerBody();
         
-        rightLeg(this->kneeAngle);
-        leftLeg(this->kneeAngle2);
+        rightLeg(this->kneeAngleR);
+        leftLeg(this->kneeAngleL);
 
     glPopMatrix();
 }
 
 void Robot::Walk(){
+    
+    
+    if(this->raisingLegL){
+        this->kneeAngleL <= 60 ? this->kneeAngleL + 3 : this->raisingLegL = false ;
 
-    float tmp = this->headAngle;
+    }else{
+        this->kneeAngleL >= 0  ? this->kneeAngleL - 3 : this->raisingLegL = true ;        
+    }
 
-    this->headAngle = tmp+3 % 20;
+    // if (this->lookAround==false) {
+    //      this->headAngle>=-75?this->headAngle-=5:this->lookAround=true;
+    // }
+    // else{
+    //     this->headAngle<=75?this->headAngle+=5:this->lookAround=false;
+    // }
+
+
+
+    if (this->raisingArms==false) {
+        this->armAngle>=-75?this->armAngle-=3:this->raisingArms=true;
+    }
+    else{
+        this->armAngle<=75?this->armAngle+=3:this->raisingArms=false;
+    }
+
+    this->updatePos();
+}
+
+void Robot::updatePos(){
+    double rad = degToRad(direction);
+
+    robot_pos[X_GRID] += WALKING_GAP* sin(rad )  ; 
+    // robot_pos[Y_GRID] += WALKING_GAP
+    robot_pos[Z_GRID] += WALKING_GAP * cos( rad) ;
+
 }
 
 
@@ -306,16 +346,16 @@ void forearm(int side){
 
     GLUquadricObj *pObj;
 
-    double forearmBase = 0.5;    //  either opposite or adjacent seg
-    double forearmTop  = 0.25;   //  either opposite or adjacent seg  MUST BE TINIER THAN forearmBase
-    double forearmLength = 2;    
+    const double forearmBase = 0.5;    //  either opposite or adjacent seg
+    const double forearmTop  = 0.25;   //  either opposite or adjacent seg  MUST BE TINIER THAN forearmBase
+    const double forearmLength = 2;    
 
 
-    double thalesCoef = forearmTop / forearmBase;
+    // double thalesCoef = forearmTop / forearmBase;
     
-    double fullLength =forearmLength /( 1 - thalesCoef ) ;
+    // double fullLength =forearmLength /( 1 - thalesCoef ) ;
 
-    double forearmDecoOrientation = RadToDeg( atan( fullLength / forearmBase  ) ) ;
+    // double forearmDecoOrientation = RadToDeg( atan( fullLength / forearmBase  ) ) ;
 
 
     glPushMatrix();
@@ -357,7 +397,7 @@ void forearm(int side){
                 glRotatef(rotation*i , 0. , 0. , 1. );
                 glTranslatef(forearmBase , 0. , 0.);
 
-                glRotatef(-forearmDecoOrientation +2  , 0. ,1. , 0.);
+                glRotatef(  -7  , 0. ,1. , 0.);
                 gluQuadricNormals(pObj, GLU_SMOOTH);
                 gluCylinder(pObj, forearmBase/10 , forearmTop/10 ,  forearmLength ,MIN_SLICES, MIN_STACKS);		
                 gluDeleteQuadric(pObj);	
@@ -603,9 +643,27 @@ void foot(int side ){
 
 
 double degToRad(double value){
-    return value/(2*M_PI);
+    return value * M_PI / 180 ;
 }
 
 double RadToDeg(double value){
-    return value* M_PI * 2;
+    return value / M_PI * 180;
+}
+
+
+
+
+float pytagore(float a , float b , float c){
+    
+    if( (!a + !b + !c) > 1 ){ //hope this one can be removed later :D
+        return 0;
+    }
+
+    if(c == 0){
+        return sqrt(pow(a, 2) + pow(b,2));
+    }else
+    {
+        return sqrt( (pow(c, 2) - pow(a+b , 2)  )  );
+    }
+    
 }

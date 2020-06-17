@@ -178,26 +178,26 @@ static void key(unsigned char key, int x, int y)
         case 'T':
             thigh<=45?thigh+=5:thigh+=0;
             break;
-        //MOVING CAMERA    
-        case 's':
-            beta -= 0.05;
-            break;
-        case 'z':		
-            beta += 0.05;
-            break;
-        case 'q':
-            alpha += 0.05;
-            break;
-        case 'd':
-            alpha -= 0.05;
-            break;
-        //Zoom
-        case 'I': //in
-            R -= 0.2;
-            break;
-        case 'O': //out
-            R += 0.2;
-            break;    
+        // //MOVING CAMERA    
+        // case 's':
+        //     beta -= 0.05;
+        //     break;
+        // case 'z':		
+        //     beta += 0.05;
+        //     break;
+        // case 'q':
+        //     alpha += 0.05;
+        //     break;
+        // case 'd':
+        //     alpha -= 0.05;
+        //     break;
+        // //Zoom
+        // case 'I': //in
+        //     R -= 0.2;
+        //     break;
+        // case 'O': //out
+        //     R += 0.2;
+        //     break;    
     }
 
     glutPostRedisplay();
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
     glutInitWindowPosition(2000,150);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
-    glutCreateWindow("GLUT Shapes");
+    // glutCreateWindow("GLUT Shapes");
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
@@ -263,11 +263,11 @@ int main(int argc, char *argv[])
 }
 
 
-void camera(float *camera_pos){
+// void camera(float *camera_pos){
 
-    camera_pos[0] = R * cos(beta) * sin(alpha);
-	camera_pos[1] = R * sin(beta);
-	camera_pos[2] = R * cos(beta) * cos(alpha);
+//     camera_pos[0] = R * cos(beta) * sin(alpha);
+// 	camera_pos[1] = R * sin(beta);
+// 	camera_pos[2] = R * cos(beta) * cos(alpha);
 
-	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-}
+// 	gluLookAt(camera_pos[0] , camera_pos[1] , camera_pos[2] , 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+// }

@@ -3,9 +3,10 @@
 
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <GL/glut.h>
+#include <SOIL/SOIL.h>
 
-#include "glut.h"
-#include "SOIL.h"
+// #include "SOIL.h"
 
 #define ANCHOR_FROM_ORIGIN 0
 #define ANCHOR_FROM_CENTER 1

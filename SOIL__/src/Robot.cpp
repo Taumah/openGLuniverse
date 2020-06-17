@@ -8,6 +8,7 @@ Robot::Robot()
     robot_pos[2] = 0.0;
 
     
+    walking = false;
 
     headAngle = 0.0;
     armAngle = 0.0;
@@ -18,6 +19,11 @@ Robot::Robot()
 
 void Robot::Draw()
 {
+
+    if(this->walking){
+        this->Walk();
+    }
+
     glPushMatrix();
         
         glScalef(0.25,0.25,0.25);
@@ -35,7 +41,12 @@ void Robot::Draw()
     glPopMatrix();
 }
 
+void Robot::Walk(){
 
+    float tmp = this->headAngle;
+
+    this->headAngle = tmp+3 % 20;
+}
 
 
 void upperBody(float headAngle){

@@ -15,7 +15,7 @@ Camera *cam = new Camera();
 // Objet Sc�ne
 Map *m = new Map();
 
-Robot *c3 = new Robot();
+Robot *c3po = new Robot();
 
 
 /** GESTION FENETRE **/
@@ -53,6 +53,9 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         break;
     case 'q':
         cam->deltaStrafe = 1;
+        break;
+    case 'w':
+        c3po->walking = true;
         break;
     }
 }
@@ -148,7 +151,7 @@ void renderScene(void)
     m->DrawGround();
     m->DrawSkybox(cam);
 
-    c3->Draw();
+    c3po->Draw();
 
     glutSwapBuffers();
 }

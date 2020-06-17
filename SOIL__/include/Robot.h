@@ -19,6 +19,8 @@ class Robot
         Robot();
         void Draw();
 
+        bool walking;
+
         float robot_pos[3];
 
         float headAngle;
@@ -29,6 +31,8 @@ class Robot
     protected:
 
     private:
+            void Walk();
+
 };
 
 

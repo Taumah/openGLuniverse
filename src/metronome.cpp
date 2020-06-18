@@ -1,8 +1,4 @@
-#include <GL/glut.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "../header/header.hpp"
+#include "Metronome.h"
 
 
 void metronome(float time){

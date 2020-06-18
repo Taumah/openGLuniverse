@@ -24,7 +24,6 @@ Robot::Robot()
 
     direction = 0.0;
 
-    ListeTextures[0] = NULL;
 }
 
 void Robot::Draw()
@@ -129,6 +128,15 @@ void Robot::updatePos(){
 
 void Robot::LoadTextures(){
     this->ListeTextures[0] = SOIL_load_OGL_texture("img/c3poBody.jpg",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
+}
+
+void Robot::swapWalkingState(){
+
+    if(  !(this->walking = !this->walking)   ){ //  = ends up standing still
+        this->headAngle = 0.0,
+        this->armAngle = 0.0,
+        this->kneeAngleL = this->kneeAngleR = 0.0;
+    }
 }
 
 void upperBody(float headAngle){
@@ -316,8 +324,9 @@ void leftArm(int armAngle){
     glPushMatrix();
 
         glTranslatef(-2, 0, 0);
-        glutWireSphere(0.5, MIN_SLICES, MIN_STACKS);
-        glRotatef(armAngle, 0, 0, 1);
+        glutSolidSphere(0.5, MIN_SLICES, MIN_STACKS);
+        glRotatef(QUARTERTURN, 0, 0, 1);
+        glRotatef(armAngle, 0, 1, 0);
         
         arm(LEFT);
 
@@ -338,8 +347,10 @@ void rightArm(int armAngle){
     glPushMatrix();
         
         glTranslatef(2, 0, 0);
-        glutWireSphere(0.5,MIN_SLICES, MIN_STACKS);
-        glRotatef(-armAngle, 0, 0, 1);
+        glutSolidSphere(0.5,MIN_SLICES, MIN_STACKS);
+
+        glRotatef(-QUARTERTURN, 0, 0, 1);
+        glRotatef(-armAngle, 0, 1, 0);
 
 
         arm(RIGHT);
@@ -379,7 +390,7 @@ void arm(int direction){
 
 void elbow(){
 
-    glutWireSphere(0.5,12,12);
+    glutSolidSphere(0.5,12,12);
 
 }
 

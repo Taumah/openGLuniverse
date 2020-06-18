@@ -35,6 +35,7 @@ class Robot
         Robot();
         void Draw();
         void LoadTextures();
+        void swapWalkingState();
 
         bool walking;
         // bool locked;

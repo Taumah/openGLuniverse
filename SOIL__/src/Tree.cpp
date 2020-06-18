@@ -12,11 +12,44 @@ void Tree::Draw(GLfloat x , GLfloat z  , GLfloat scale ){
 }
 
 
+void trunck(GLfloat x , GLfloat z , GLfloat scale){
+
+    glPushMatrix();
+        glScaled(scale , scale , scale);
+
+        const float trunck_height = 6.0;
+
+        glTranslatef( x, trunck_height/2 , z);
+
+        glColor3f(0.15 , 0.102 , 0.051);
+        glRotatef(90 , 1 , 0 , 0);
+
+
+        GLUquadricObj *trunck;
+        trunck = gluNewQuadric();
+        gluQuadricNormals(trunck, GLU_SMOOTH);
+        gluCylinder(trunck,  0.3 , 0.3 , trunck_height , 30 , 30 );
+        gluDeleteQuadric(trunck);
+
+        glRotatef(45, 1 , 1 , 1 );
+
+        cube(0.7);
+
+        glRotatef(45, 1 , 0 , 1 );
+
+        cube(0.9);
+
+        glRotatef(45, 0 , 1 , 0 );
+
+        cube(0.8);
+
+
+    glPopMatrix();
+}
+
 
 
 void cube(GLfloat shade){
-
-
 
     glPushMatrix();
     
@@ -80,41 +113,4 @@ void cube(GLfloat shade){
 
     glPopMatrix();
 
-}
-
-
-
-void trunck(GLfloat x , GLfloat z  , GLfloat scale ){
-
-    glPushMatrix();
-        glScaled(scale , scale , scale);
-
-        const float trunck_height = 6.0;
-
-        glTranslatef( x, trunck_height/2 , z);
-
-        glColor3f(0.15 , 0.102 , 0.051);
-        glRotatef(90 , 1 , 0 , 0);
-
-
-        GLUquadricObj *trunck;
-        trunck = gluNewQuadric();
-        gluQuadricNormals(trunck, GLU_SMOOTH);
-        gluCylinder(trunck,  0.3 , 0.3 , trunck_height , 30 , 30 );
-        gluDeleteQuadric(trunck);
-
-        glRotatef(45, 1 , 1 , 1 );
-
-        cube(0.7);
-
-        glRotatef(45, 1 , 0 , 1 );
-
-        cube(0.9);
-
-        glRotatef(45, 0 , 1 , 0 );
-
-        cube(0.8);
-
-
-    glPopMatrix();
 }

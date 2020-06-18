@@ -2,7 +2,7 @@ dir := /home/thomas/CLionProjects/openGLuniverse/SOIL__/src
 
 compil:
 	@g++ -o "bin/Debug/Implémentation SOIL" obj/Debug/src/*.o \
-	lib/glut32.lib lib/libSOIL.a -lglut -lGL -lGLU -lSOIL
+	-lglut -lGL -lGLU -lSOIL
 
 main:
 	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/main.cpp -o obj/Debug/src/main.o

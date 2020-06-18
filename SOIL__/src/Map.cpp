@@ -41,6 +41,7 @@ void Map::LoadTextures()
     ListeTextures[18] = SOIL_load_OGL_texture("img/metalgate.bmp",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
     //ListeTextures[19] = SOIL_load_OGL_texture("img/betonurban.bmp",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
     ListeTextures[19] = SOIL_load_OGL_texture("img/terre.jpg",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
+    // ListeTextures[20] = SOIL_load_OGL_texture("img/c3poBody.jpg",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
 }
 
 void Map::DrawGround()
@@ -203,7 +204,10 @@ void Map::DrawDecoration(){
     Tree *t = new Tree();
 
     t->Draw(10. , 10. , 1.5);
-    t->Draw(3.  ,  6. , 0.4);
+    t->Draw(3.  ,  6. , 0.8);
     t->Draw(-6. , 0. , 2);
 
+    t->Draw(-10. , -5. , 2.3);
+    t->Draw( 6. ,  -3. , 1.7);
+    
 }

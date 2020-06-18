@@ -1,5 +1,4 @@
 #include <stdlib.h>
-
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -72,7 +71,7 @@ void KeyboardDown(unsigned char key, int xx, int yy)
 
     //Robot specials    
     case 'w':
-        c3po->walking = !c3po->walking;
+        c3po->swapWalkingState();
         break;
     case 'r':
         c3po->direction += 2;

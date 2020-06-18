@@ -20,9 +20,6 @@
 #define Y_GRID 1
 #define Z_GRID 2
 
-#define WALKING_GAP 0.1
-
-
 
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
@@ -38,7 +35,7 @@ class Robot
         void swapWalkingState();
 
         bool walking;
-        // bool locked;
+        float speed;
 
         float robot_pos[3];
         float direction;
@@ -64,6 +61,7 @@ class Robot
             
 
             bool lookAround;
+
 
 };
 

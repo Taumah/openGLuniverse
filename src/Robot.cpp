@@ -23,6 +23,8 @@ Robot::Robot()
 
     direction = 0.0;
 
+    speed = 0.1;
+
 }
 
 void Robot::Draw()
@@ -79,15 +81,16 @@ void Robot::Draw()
 void Robot::Walk(){
     
 
-    const int maxAngleLeg = 80;
-    const int minAngleLeg = -40;
+    const int maxAngleLeg = 35;
+    const int minAngleLeg = -20;
+    const int step = 10; 
 
     //mouvement jambes
     if( !this->raisingLeg){
-        this->kneeAngle <= maxAngleLeg ? this->kneeAngle += 3 : this->raisingLeg = true ;
+        this->kneeAngle <= maxAngleLeg ? this->kneeAngle += step*this->speed : this->raisingLeg = true ;
 
     }else{
-        this->kneeAngle >= minAngleLeg  ? this->kneeAngle -= 3 : this->raisingLeg = false ;        
+        this->kneeAngle >= minAngleLeg  ? this->kneeAngle -= step*this->speed : this->raisingLeg = false ;        
 
     }
 
@@ -115,9 +118,9 @@ void Robot::Walk(){
 void Robot::updatePos(){
     double rad = degToRad(direction);
 
-    robot_pos[X_GRID] += WALKING_GAP* sin(rad )  ; 
+    robot_pos[X_GRID] += this->speed* sin(rad )  ; 
     // robot_pos[Y_GRID] += WALKING_GAP
-    robot_pos[Z_GRID] += WALKING_GAP * cos( rad) ;
+    robot_pos[Z_GRID] += this->speed * cos( rad) ;
 
 }
 
@@ -505,7 +508,7 @@ void hand(int side){
 void leg(float kneeAngle, int side){
     glPushMatrix();
 
-    glRotatef(-kneeAngle*0.4 , 1 , 0 , 0 );
+    glRotatef(-kneeAngle, 1 , 0 , 0 );
     // glRotatef(40 , 1 , 0 , 0 );
 
 

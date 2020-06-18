@@ -79,6 +79,12 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'R':
         c3po->direction -= 2;
         break;
+    case '-':
+        c3po->speed = MAX(0 , c3po->speed - 0.01);
+        break;
+    case '+':
+        c3po->speed = MIN(1.5 , c3po->speed + 0.01);
+        break;
     }
 
     (void)xx;(void)yy;

@@ -34,9 +34,10 @@ class Robot
     public:
         Robot();
         void Draw();
+        void LoadTextures();
 
         bool walking;
-        bool locked;
+        // bool locked;
 
         float robot_pos[3];
         float direction;
@@ -49,6 +50,8 @@ class Robot
     private:
             void Walk();
             void updatePos();
+
+            GLuint ListeTextures[1];
 
             bool raisingArms;
 
@@ -78,7 +81,7 @@ void rightBodySide();
 void hand(int side);
 void arm(int direction);
 void elbow(void);
-void foot(int side);
+void foot(/*int side*/);
 void forearm(int side);
 
 

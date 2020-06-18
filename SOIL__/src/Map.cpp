@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "Block.h"
+#include "Tree.h"
 
 #define GL_CLAMP_TO_EDGE 0x812F
 #define SKY_DISTANCE 200.0f
@@ -44,7 +45,7 @@ void Map::LoadTextures()
 
 void Map::DrawGround()
 {
-    // Block *b = new Block(2.0f, 2.0f, 2.0f);
+    Block *b = new Block(0.6f, 0.6f, 0.6f);
 
     glEnable(GL_TEXTURE_2D);
     glColor3f(1.0f, 1.0f, 1.0f);
@@ -64,15 +65,18 @@ void Map::DrawGround()
     glTexCoord2f(50.0f, 0.0f);
     glVertex3f(50.0f, 0.0f, -50.0f);
     glEnd();
+    
     glTranslatef(0.0f, 1.0f, 0.0f);
-    // b->SetTexture(FRONT, ListeTextures[1]);
-    // b->SetTexture(BACK, ListeTextures[7]);
-    // b->SetTexture(TOP, ListeTextures[12]);
-    // b->SetTexture(BOT, ListeTextures[4]);
-    // b->SetTexture(RIGHT, ListeTextures[17]);
-    // b->SetTexture(LEFT, ListeTextures[9]);
-    // b->SetTexture(SPHERE, ListeTextures[19]);
-    // b->Draw();
+    b->SetTexture(FRONT, ListeTextures[1]);
+    b->SetTexture(BACK, ListeTextures[7]);
+    b->SetTexture(TOP, ListeTextures[12]);
+    b->SetTexture(BOT, ListeTextures[4]);
+    b->SetTexture(RIGHT, ListeTextures[17]);
+    b->SetTexture(LEFT, ListeTextures[9]);
+    b->SetTexture(SPHERE, ListeTextures[19]);
+    b->Draw();
+
+    this->DrawDecoration();
 }
 
 void Map::DrawSkybox(Camera *cam)
@@ -192,4 +196,14 @@ void Map::DrawSkybox(Camera *cam)
     glTexCoord2f(1, 1);
     glVertex3f(SKY_DISTANCE + cam->posx, -SKY_DISTANCE + cam->posy, SKY_DISTANCE + cam->posz);
     glEnd();
+}
+
+
+void Map::DrawDecoration(){
+    Tree *t = new Tree();
+
+    t->Draw(10. , 10. , 1.5);
+    t->Draw(3.  ,  6. , 0.4);
+    t->Draw(-6. , 0. , 2);
+
 }

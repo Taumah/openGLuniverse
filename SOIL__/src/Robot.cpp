@@ -1,4 +1,5 @@
 #include "Robot.h"
+#include <stdio.h>
 
 Robot::Robot()
 {
@@ -23,12 +24,39 @@ Robot::Robot()
 
     direction = 0.0;
 
+    ListeTextures[0] = NULL;
 }
 
 void Robot::Draw()
 {
 
-    if( !this->locked && this->walking ){
+
+
+    glDisable(GL_LIGHTING);
+    glEnable(GL_TEXTURE_2D);
+
+    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+    // Face
+    glBindTexture(GL_TEXTURE_2D, this->ListeTextures[0]);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    // glBegin(GL_QUADS);
+    //     glTexCoord2f(0, 0);
+    //     glVertex3f( 200 , -200 , -200);
+    //     glTexCoord2f(1, 0);
+    //     glVertex3f(-200, -200 , -200 );
+    //     glTexCoord2f(1, 1);
+    //     glVertex3f(-200 , 200 , -200 );
+    //     glTexCoord2f(0, 1);
+    //     glVertex3f( 200 , 200, -200);
+    // glEnd();
+
+    if(this->walking ){
         this->Walk();
     }
 
@@ -52,23 +80,34 @@ void Robot::Draw()
 
 void Robot::Walk(){
     
+
     
-    if(this->raisingLegL){
-        this->kneeAngleL <= 60 ? this->kneeAngleL + 3 : this->raisingLegL = false ;
+    //mouvement jambes
+    if( !this->raisingLegL){
+        this->kneeAngleL <= 60 ? this->kneeAngleL + 3 : this->raisingLegL = true ;
 
     }else{
-        this->kneeAngleL >= 0  ? this->kneeAngleL - 3 : this->raisingLegL = true ;        
+        this->kneeAngleL >= 0  ? this->kneeAngleL - 3 : this->raisingLegL = false ;        
+
     }
 
-    // if (this->lookAround==false) {
-    //      this->headAngle>=-75?this->headAngle-=5:this->lookAround=true;
-    // }
-    // else{
-    //     this->headAngle<=75?this->headAngle+=5:this->lookAround=false;
-    // }
+    if( !this->raisingLegR){
+        this->kneeAngleR <= 60 ? this->kneeAngleR + 3 : this->raisingLegR = true;
+
+    }else{
+        this->kneeAngleR >= 0  ? this->kneeAngleR - 3 : this->raisingLegR = false ;        
+    }
+
+    //pivot de tête
+    if (this->lookAround==false) {
+         this->headAngle>=-75?this->headAngle-=5:this->lookAround=true;
+    }
+    else{
+        this->headAngle<=75?this->headAngle+=5:this->lookAround=false;
+    }
 
 
-
+    //mouvement bras
     if (this->raisingArms==false) {
         this->armAngle>=-75?this->armAngle-=3:this->raisingArms=true;
     }
@@ -88,6 +127,9 @@ void Robot::updatePos(){
 
 }
 
+void Robot::LoadTextures(){
+    this->ListeTextures[0] = SOIL_load_OGL_texture("img/c3poBody.jpg",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
+}
 
 void upperBody(float headAngle){
     glPushMatrix();
@@ -477,7 +519,6 @@ void lowerBody(){
 
 void rightLeg(float kneeAngle){
 
-
     glPushMatrix();
 
     glRotatef(-kneeAngle*0.4 , 1 , 0 , 0 );
@@ -538,7 +579,7 @@ void rightLeg(float kneeAngle){
         glPopMatrix();
 
 
-        foot(RIGHT);
+        foot(/*RIGHT*/);
         
     glPopMatrix();
 }
@@ -608,13 +649,13 @@ void leftLeg(float kneeAngle){
         glPopMatrix();
 
 
-        foot(LEFT);
+        foot(/*LEFT*/);
 
     glPopMatrix();
 }
 
 
-void foot(int side ){
+void foot(/*int side*/ ){
     
     glPushMatrix();
         glColor3f(.93, .85, .02);

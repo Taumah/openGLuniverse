@@ -20,9 +20,12 @@ map:
 robot:
 	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Robot.cpp -o obj/Debug/src/Robot.o 
 
+tree:
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Tree.cpp -o obj/Debug/src/Tree.o 
+
 launch:
 	@./"bin/Debug/Implémentation SOIL"
 
 all:
 	@echo "Compiling"
-	@make main block camera map robot compil launch
+	@make main block camera map robot tree compil launch

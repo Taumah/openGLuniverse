@@ -20,6 +20,7 @@ class Map
         void LoadTextures(void);
         void DrawGround(void);
         void DrawSkybox(Camera *cam);
+        void DrawDecoration();
     protected:
     private:
 };

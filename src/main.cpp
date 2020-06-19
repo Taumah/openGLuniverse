@@ -47,13 +47,13 @@ void reshapeWindow(int w, int h)
 /** FONCTIONS DE GESTION CLAVIER **/
 void KeyboardDown(unsigned char key, int xx, int yy)
 {
+    
     switch(key)
     {
     case '0': // Reset Robot
         c3po = new Robot();
         break;
     case 'e': // Unlock Camera
-        // c3po->locked = cam->locked;
         cam->locked = (cam->locked)?0:1;
         break;
     case 'z':
@@ -78,6 +78,12 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         break;
     case 'R':
         c3po->direction -= 2;
+        break;
+    case '-':
+        c3po->speed = MAX(0 , c3po->speed - 0.01);
+        break;
+    case '+':
+        c3po->speed = MIN(1.5 , c3po->speed + 0.01);
         break;
     }
 

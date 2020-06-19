@@ -52,6 +52,8 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     {
     case '0': // Reset Robot
         c3po = new Robot();
+        c3po->LoadTextures();
+
         break;
     case 'e': // Unlock Camera
         cam->locked = (cam->locked)?0:1;

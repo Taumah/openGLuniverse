@@ -29,11 +29,8 @@ Robot::Robot()
 
 void Robot::Draw()
 {
-
-
-
-    glDisable(GL_LIGHTING);
-    glEnable(GL_TEXTURE_2D);
+    // glDisable(GL_LIGHTING);
+    // glEnable(GL_TEXTURE_2D);
 
     glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -44,17 +41,6 @@ void Robot::Draw()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-    // glBegin(GL_QUADS);
-    //     glTexCoord2f(0, 0);
-    //     glVertex3f( 200 , -200 , -200);
-    //     glTexCoord2f(1, 0);
-    //     glVertex3f(-200, -200 , -200 );
-    //     glTexCoord2f(1, 1);
-    //     glVertex3f(-200 , 200 , -200 );
-    //     glTexCoord2f(0, 1);
-    //     glVertex3f( 200 , 200, -200);
-    // glEnd();
 
     if(this->walking ){
         this->Walk();
@@ -67,8 +53,6 @@ void Robot::Draw()
         glRotatef(this->direction , 0 , 1 , 0);
 
         upperBody();
-        // leftArm(this->armAngle);
-        // rightArm(-this->armAngle);
 
         fullArm(-this->armAngle , LEFT);
         fullArm(this->armAngle , RIGHT);
@@ -350,7 +334,7 @@ void rightBodySide(){
     glPopMatrix();
 }
 
-void fullArm(float armAngle , int side){
+void Robot::fullArm(float armAngle , int side){
     glPushMatrix();
         
         glTranslatef(2 * side, 0, 0);
@@ -364,7 +348,7 @@ void fullArm(float armAngle , int side){
 
         glTranslatef(2 * side, 0, 0);
         elbow();
-        glRotatef(10, 0, 0, 1);
+        glRotatef(10 + QUARTERTURN*this->walking*(-side), 0 , this->walking, 1);
         // glTranslatef(1, 0, 0);
         
         forearm(side);
@@ -622,5 +606,6 @@ float pytagore(float a , float b , float c){
     {
         return sqrt( (pow(c, 2) - pow(a+b , 2)  )  );
     }
+
     
 }

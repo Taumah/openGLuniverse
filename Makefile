@@ -1,27 +1,27 @@
-dir := /home/thomas/CLionProjects/openGLuniverse/src
+DIR := ./src
 
 compil:
 	@g++ -o "bin/Debug/Implémentation SOIL" obj/Debug/src/*.o \
 	-lglut -lGL -lGLU -lSOIL
 
-main:
-	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/main.cpp -o obj/Debug/src/main.o
+main: $(DIR)/main.cpp
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(DIR)/main.cpp -o obj/Debug/src/main.o
 
-block:
-	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Block.cpp -o obj/Debug/src/Block.o
+block: $(DIR)/Block.cpp
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(DIR)/Block.cpp -o obj/Debug/src/Block.o
 
 
-camera:
-	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Camera.cpp -o obj/Debug/src/Camera.o
+camera: $(DIR)/Camera.cpp
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(DIR)/Camera.cpp -o obj/Debug/src/Camera.o
 
-map:
-	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Map.cpp -o obj/Debug/src/Map.o
+map: $(DIR)/Map.cpp
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(DIR)/Map.cpp -o obj/Debug/src/Map.o
 
-robot:
-	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Robot.cpp -o obj/Debug/src/Robot.o 
+robot: $(DIR)/Robot.cpp
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(DIR)/Robot.cpp -o obj/Debug/src/Robot.o 
 
-tree:
-	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(dir)/Tree.cpp -o obj/Debug/src/Tree.o 
+tree: $(DIR)/Tree.cpp
+	@g++ -Wall -Wextra -fexceptions -g -Iinclude -Iinclude -c $(DIR)/Tree.cpp -o obj/Debug/src/Tree.o 
 
 launch:
 	@./"bin/Debug/Implémentation SOIL"

@@ -51,6 +51,8 @@ class Robot
 
             void upperBody();
             void lowerBody();
+            void fullArm(float armAngle , int side);
+
 
             GLuint ListeTextures[1];
 
@@ -58,6 +60,8 @@ class Robot
 
             bool raisingLeg;
             float kneeAngle;
+
+            // float elbowAngle;
             
 
             bool lookAround;
@@ -66,7 +70,6 @@ class Robot
 };
 
 
-void fullArm(float armAngle , int side);
 void leg(float kneeAngle, int side);
 void head(float headAngle);
 void eye(int side);

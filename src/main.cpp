@@ -47,13 +47,13 @@ void reshapeWindow(int w, int h)
 /** FONCTIONS DE GESTION CLAVIER **/
 void KeyboardDown(unsigned char key, int xx, int yy)
 {
+    
     switch(key)
     {
     case '0': // Reset Robot
         c3po = new Robot();
         break;
     case 'e': // Unlock Camera
-        // c3po->locked = cam->locked;
         cam->locked = (cam->locked)?0:1;
         break;
     case 'z':

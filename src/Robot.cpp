@@ -341,14 +341,14 @@ void Robot::fullArm(float armAngle , int side){
         glutSolidSphere(0.5,MIN_SLICES, MIN_STACKS);
 
         glRotatef(-QUARTERTURN * side, 0, 0, 1);
-        glRotatef(armAngle * side, 0, 1, 0);
+        glRotatef(armAngle * side * (this->speed*5) , 0, 1, 0);
 
 
         arm(side);
 
         glTranslatef(2 * side, 0, 0);
         elbow();
-        glRotatef(10 + QUARTERTURN*this->walking*(-side), 0 , this->walking, 1);
+        glRotatef( -10 + QUARTERTURN*this->walking*(-side), 0 , this->walking, 1);
         // glTranslatef(1, 0, 0);
         
         forearm(side);
